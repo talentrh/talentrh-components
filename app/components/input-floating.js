@@ -1,1 +1,0 @@
-export { default } from 'talentrh-components/components/input-floating';
