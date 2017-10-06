@@ -1,27 +1,28 @@
 # talentrh-components
 
-This README outlines the details of collaborating on this Ember addon.
+## Como usar
 
-## Installation
+### Input CPF
+##### Exemplo:
+```
+{{talent-input-cpf
+  placeholder='CPF'
+  value=model.cpf}}
+```
+##### Outras opções:
+```
+required=true
+disabled=true
+onUpdateStatus='nomeDaAction'
+```
+Passar nome de uma action pela propriedade onUpdateStatus, a mesma será acionada pelo componente durante a digitação
+recebendo o tipo do campo e o status atual do componente (true ou false), sendo false caso o valor informado seja inválido e true caso seja válido.
 
-* `git clone <repository-url>` this repository
-* `cd talentrh-components`
-* `npm install`
-* `bower install`
+##### Exemplo da action para onUpdateStatus:
+```
+updateStatus(inputType, status) {
+  this.set(inputType, status);
+}
+```
+Neste exemplo de action, a mesma vai atualizar a propriedade com o nome inputType para o status atual do componente, permitindo saber se o valor do input é valido antes de submeter o form.
 
-## Running
-
-* `ember serve`
-* Visit your app at [http://localhost:4200](http://localhost:4200).
-
-## Running Tests
-
-* `npm test` (Runs `ember try:each` to test your addon against multiple Ember versions)
-* `ember test`
-* `ember test --server`
-
-## Building
-
-* `ember build`
-
-For more information on using ember-cli, visit [https://ember-cli.com/](https://ember-cli.com/).
