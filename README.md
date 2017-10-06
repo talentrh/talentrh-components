@@ -86,7 +86,6 @@ suportando atualmente: name, address, district, zipcode, number, phone.
   placeholder='Selecionar Cidade'
   label='Cidade'
   showProperties='id| - |name'
-  onButtonNew='testeActionNew'
   optional=true
   selected=modelTest.city
   startValue=modelTest.city.name}}
@@ -99,7 +98,6 @@ suportando atualmente: name, address, district, zipcode, number, phone.
   placeholder='Selecionar Cidade'
   label='Cidade'
   showProperties='id| - |name'
-  onButtonNew='testeActionNew'
   optional=true
   selected=modelTest.city
   startValue=modelTest.city.name}}
@@ -112,3 +110,16 @@ suportando atualmente: name, address, district, zipcode, number, phone.
 * `optional=true` | Exibe um "X" permitindo desselecionar o valor atual do select clicando no mesmo.
 * `startValue=modelTest.city.name` | 
 * `showProperties='property'` | Informar a propriedade que será mostrada no select, pode ser usado o "|" para separar duas ou mais propriedades.
+* `onButtonNew='nomeDaAction'` | Caso essa propriedade for informada, aparecerá um botão ao lado do select que ao ser clicado invocará a action cujo nome foi passado no 'onButtonNew'. Utilizar esse recurso quando for necessario abrir um modal ou levar para outra tela para criar um novo registro.
+
+## Input Datetime
+##### Exemplo:
+```
+{{talent-input-datetime
+  placeholder='Data inicial'
+  format='DD/MM/YYYY HH:mm'
+  value=datetimeValue}}
+```
+##### Outras opções:
+* `mask='99/99/9999 99:99'` | Permite informar uma máscara para o campo
+* `formatToDate=true` | Esta opção faz com que a data e/ou hora selecionada no input seja transformado de string para  formato de data.
