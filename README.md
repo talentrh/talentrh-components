@@ -36,7 +36,7 @@ Neste exemplo de action, a mesma vai atualizar a propriedade com o nome inputTyp
 * `disabled=true`
 * `onUpdateStatus='nomeDaAction'` | Explicado no input CPF.
 * `buttonComplete=true` | Habilita botão de completar campos automaticamente,
-suportado atualmente: address, district e complement.
+suportando atualmente: address, district e complement.
 
 ```
 {{talent-input-cep
@@ -48,6 +48,20 @@ suportado atualmente: address, district e complement.
   onUpdateStatus='updateStatus'
   placeholder='CEP'}}
 ```
-* `loadCity='nomeDaAction'` | Para o preenchimento automatico do campo CIDADE é necessário passar uma action
-para o componente, a mesma será acionada após clicar no botão de preencher automatico, a action recebe os dados da cidade ficando a critério do desenvolvedor decidir como popular a mesma.
+* `loadCity='nomeDaAction'` | Para o preenchimento automatico do campo CIDADE é necessário informar uma action
+para o componente, a mesma será acionada após clicar no botão de preencher automatico recebendo as informações da cidade ficando a critério do desenvolvedor a manipulação desses dados.
+
+## Input CEP
+##### Exemplo:
+```
+{{talent-input-cnpj
+  value=valuecnpj
+  placeholder='CNPJ'}}
+```
+##### Outras opções:
+* `required=true`
+* `disabled=true`
+* `onUpdateStatus='nomeDaAction'` | Explicado no input CPF.
+* `buttonComplete=true` | Habilita botão de completar campos automaticamente,
+suportando atualmente: name, address, district, zipcode, number, phone.
 
