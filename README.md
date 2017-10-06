@@ -1,4 +1,5 @@
 # talentrh-components
+Componentes padronizados para EmberJS.
 
 ## Input CPF
 ##### Exemplo:
