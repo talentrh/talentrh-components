@@ -1,0 +1,12 @@
+<div class="form-group">
+  {{input
+    class=(if valueSelected 'form-control dirty' 'form-control')
+    disabled=disabled
+    value=valueSelected}}
+
+  <label>{{placeholder}}</label>
+
+  <a class="clear-picker" {{action 'clearPicker'}}>
+    <i class="fa fa-times" aria-hidden="true"></i>
+  </a>
+</div>
