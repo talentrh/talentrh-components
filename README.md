@@ -1,8 +1,6 @@
 # talentrh-components
 
-## Como usar
-
-### Input CPF
+## Input CPF
 ##### Exemplo:
 ```
 {{talent-input-cpf
@@ -25,4 +23,31 @@ updateStatus(inputType, status) {
 }
 ```
 Neste exemplo de action, a mesma vai atualizar a propriedade com o nome inputType para o status atual do componente, permitindo saber se o valor do input é valido antes de submeter o form.
+
+## Input CEP
+##### Exemplo:
+```
+{{talent-input-cep
+  value=modelTest.cep
+  placeholder='CEP'}}
+```
+##### Outras opções:
+* `required=true`
+* `disabled=true`
+* `onUpdateStatus='nomeDaAction'` | Explicado no input CPF.
+* `buttonComplete=true` | Habilita botão de completar campos automaticamente,
+suportado atualmente: address, district e complement.
+
+```
+{{talent-input-cep
+  value=model.cep
+  address=model.address
+  district=model.district
+  complement=model.complement
+  buttonComplete=true
+  onUpdateStatus='updateStatus'
+  placeholder='CEP'}}
+```
+* `loadCity='nomeDaAction'` | Para o preenchimento automatico do campo CIDADE é necessário passar uma action
+para o componente, a mesma será acionada após clicar no botão de preencher automatico, a action recebe os dados da cidade ficando a critério do desenvolvedor decidir como popular a mesma.
 
