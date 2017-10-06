@@ -1,6 +1,9 @@
 # talentrh-components
 Componentes padronizados para EmberJS.
 
+
+2 - Como Usar
+======
 ## Input CPF
 ##### Exemplo:
 ```
@@ -124,3 +127,12 @@ suportando atualmente: name, address, district, zipcode, number, phone.
 ##### Outras opções:
 * `mask='99/99/9999 99:99'` | Permite informar uma máscara para o campo
 * `formatToDate=true` | Esta opção faz com que a data e/ou hora selecionada no input seja transformado de string para  formato de data.
+
+3 - Desenvolver
+======
+* 1- `git clone`
+* 2- `cd talentrh-components`
+* 3- Instalar as dependência executando `npm install && bower install`
+* 4- Remover comentario do método `isDevelopingAddon` em talentrh-components/index.js
+* 5- Executar o comando `npm link` para gerar um link do módulo
+* 6- No projeto em que será testado o addon, executar o comando `npm link talentrh-components`
