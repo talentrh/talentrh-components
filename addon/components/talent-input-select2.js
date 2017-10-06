@@ -80,6 +80,7 @@ export default Ember.Component.extend({
     clearSelect() {
       this.set('selected', null);
       this.$('select').val('').trigger('change');
+      this.set('showStartValue', true);
     },
 
     buttonNew() {
