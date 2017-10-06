@@ -1,0 +1,112 @@
+.talent-input-validation {
+  position: relative;
+}
+.talent-input-validation .fa-icon {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  display: none;
+}
+.talent-input-validation .validation-error-message {
+  position: absolute;
+  font-size: 11px;
+  width: 100%;
+  text-align: center;
+  display: none;
+}
+
+.talent-input-validation-error .fa-times-circle {
+  display: block;
+  color: #e68383;
+}
+.talent-input-validation-error input {
+  border-bottom: 1px #e68383 solid;
+}
+.talent-input-validation-error input:focus {
+  border-bottom: 1px #e68383 solid;
+}
+.talent-input-validation-error .validation-error-message {
+  color: #e68383;
+  display: block;
+}
+.talent-input-validation-error .form-group .form-control:focus ~ label:after {
+  background: #d86f6f;
+}
+
+.talent-input-validation-success .fa-check {
+  display: block;
+  color: #4cc77f;
+}
+.talent-input-validation-success input {
+  border-bottom: 1px #77d69e solid;
+}
+.talent-input-validation-success .form-group .form-control:focus ~ label:after {
+  background: #4cc77f;
+}
+
+.talent-input-select2 .clear-select2 {
+  position: absolute;
+  right: 25px;
+  top: 50%;
+  transform: translateY(-31%);
+  color: #888;
+  font-size: 11px;
+  cursor: pointer;
+}
+
+.talent-input-select2 .talent-button-right,
+.talent-input-cnpj .talent-button-right,
+.talent-input-cep .talent-button-right {
+  position: absolute;
+  right: 0px;
+  bottom: 0px;
+  width: 30px;
+  background: #5c6a88;
+  outline: none;
+  color: #eee;
+  border: 0;
+  padding: 5px;
+  border-radius: 2px;
+}
+.talent-input-select2 .talent-button-right + .form-group,
+.talent-input-cnpj .talent-button-right + .form-group,
+.talent-input-cep .talent-button-right + .form-group {
+  width: calc(100% - 35px) !important;
+}
+
+.talent-spin {
+  -webkit-animation-name: spin;
+  -webkit-animation-duration: 2000ms;
+  -webkit-animation-iteration-count: infinite;
+  -webkit-animation-timing-function: linear;
+  -moz-animation-name: spin;
+  -moz-animation-duration: 2000ms;
+  -moz-animation-iteration-count: infinite;
+  -moz-animation-timing-function: linear;
+  -ms-animation-name: spin;
+  -ms-animation-duration: 2000ms;
+  -ms-animation-iteration-count: infinite;
+  -ms-animation-timing-function: linear;
+
+  animation-name: spin;
+  animation-duration: 2000ms;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+}
+@-ms-keyframes spin {
+  from { -ms-transform: rotate(0deg); }
+  to { -ms-transform: rotate(360deg); }
+}
+@-moz-keyframes spin {
+  from { -moz-transform: rotate(0deg); }
+  to { -moz-transform: rotate(360deg); }
+}
+@-webkit-keyframes spin {
+  from { -webkit-transform: rotate(0deg); }
+  to { -webkit-transform: rotate(360deg); }
+}
+@keyframes spin {
+  from { transform:rotate(0deg); }
+  to { transform:rotate(360deg); }
+}
