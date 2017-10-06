@@ -79,6 +79,7 @@ export default Ember.Component.extend({
   actions: {
     clearSelect() {
       this.set('selected', null);
+      this.$('select').val('').trigger('change');
     },
 
     buttonNew() {
