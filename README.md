@@ -51,7 +51,7 @@ suportando atualmente: address, district e complement.
 * `loadCity='nomeDaAction'` | Para o preenchimento automatico do campo CIDADE é necessário informar uma action
 para o componente, a mesma será acionada após clicar no botão de preencher automatico recebendo as informações da cidade ficando a critério do desenvolvedor a manipulação desses dados.
 
-## Input CEP
+## Input CNPJ
 ##### Exemplo:
 ```
 {{talent-input-cnpj
@@ -61,7 +61,54 @@ para o componente, a mesma será acionada após clicar no botão de preencher au
 ##### Outras opções:
 * `required=true`
 * `disabled=true`
-* `onUpdateStatus='nomeDaAction'` | Explicado no input CPF.
+* `onUpdateStatus='nomeDaAction'` | Explicado no input CNPJ.
 * `buttonComplete=true` | Habilita botão de completar campos automaticamente,
 suportando atualmente: name, address, district, zipcode, number, phone.
-
+```
+{{talent-input-cnpj
+  value=value
+  name=cnpjName
+  address=cnpjAddress
+  district=cnpjDistrict
+  zipcode=cnpjZipcode
+  number=cnpjNumber
+  phone=cnpjPhone
+  buttonComplete=true
+  onUpdateStatus='updateStatus'
+  placeholder='CNPJ'}}
+```
+## Input Select2
+##### Exemplo usando Ember Data:
+```
+{{talent-input-select2
+  modelName='city'
+  endpoint='/cities/ajax'
+  placeholder='Selecionar Cidade'
+  label='Cidade'
+  showProperties='id| - |name'
+  onButtonNew='testeActionNew'
+  optional=true
+  selected=modelTest.city
+  startValue=modelTest.city.name}}
+```
+##### Exemplo usando Ajax:
+```
+{{talent-input-select2
+  ajax=true
+  endpoint='/cities/ajax'
+  placeholder='Selecionar Cidade'
+  label='Cidade'
+  showProperties='id| - |name'
+  onButtonNew='testeActionNew'
+  optional=true
+  selected=modelTest.city
+  startValue=modelTest.city.name}}
+```
+##### Propriedades:
+* `disabled=true`
+* `ajax=true` | Informa que o componente vai utilizar Ajax "puro" ao invés do Ember Data.
+* `modelName='nomeDoModel'` | Caso o componente esteja usando Ember Data, informar o nome do model. 
+* `endpoint='/exemplo/cidades'` | Informar o endpoint o qual o componente buscará os registros.
+* `optional=true` | Exibe um "X" permitindo desselecionar o valor atual do select clicando no mesmo.
+* `startValue=modelTest.city.name` | 
+* `showProperties='property'` | Informar a propriedade que será mostrada no select, pode ser usado o "|" para separar duas ou mais propriedades.
