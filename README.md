@@ -3,7 +3,7 @@ Componentes padronizados para EmberJS.
 
 1 - Instalação
 ======
-* 1- Adicionar no package.json: `"talentrh-components": "talentrh/talentrh-components#branchOuTag"`.
+* 1- Adicionar ao package.json: `"talentrh-components": "talentrh/talentrh-components#branchOuTag"`.
 * 2- Executar o comando `npm install`.
 
 2 - Como Usar
