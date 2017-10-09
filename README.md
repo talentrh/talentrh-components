@@ -132,6 +132,82 @@ suportando atualmente: name, address, district, zipcode, number, phone.
 * `mask='99/99/9999 99:99'` | Permite informar uma máscara para o campo
 * `formatToDate=true` | Esta opção faz com que a data e/ou hora selecionada no input seja transformado de string para  formato de data.
 
+## Input Datepair
+##### Exemplo formato date (DD/MM/YYYY):
+```
+<div id="datepair-exemplo">
+  {{#talent-input-datepair
+    id="datepair-exemplo"
+    startDate=startDate
+    endDate=endDate
+  }}
+    <div class="col-md-6">
+      <div class="form-group">
+        {{input
+          value=startDate
+          class="form-control date start"}}
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="form-group">
+        {{input
+          value=endDate
+          class="form-control date end"}}
+      </div>
+    </div>
+  {{/talent-input-datepair}}
+</div>
+```
+##### Exemplo formato time (HH:mm):
+```
+<div id="datepair-exemplo">
+  {{#talent-input-datepair
+    id="datepair-exemplo"
+    startTime=startTime
+    endTime=endTime
+  }}
+    <div class="col-md-6">
+      <div class="form-group">
+        {{input
+          value=startTime
+          class="form-control time start"}}
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="form-group">
+        {{input
+          value=endTime
+          class="form-control time end"}}
+      </div>
+    </div>
+  {{/talent-input-datepair}}
+</div>
+```
+##### Exemplo formato datetime (DD/MM/YYYY HH:mm):
+```
+<div id="datepair-exemplo">
+  {{#talent-input-datepair
+    id="datepair-exemplo"
+    startDatetime=startDatetime
+    endDatetime=endDatetime
+  }}
+    <div class="col-md-6">
+      <div class="form-group">
+        {{input
+          value=startDatetime
+          class="form-control datetime start"}}
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="form-group">
+        {{input
+          value=endDatetime
+          class="form-control datetime end"}}
+      </div>
+    </div>
+  {{/talent-input-datepair}}
+</div>
+```
 3 - Desenvolver
 ======
 * 1- `git clone`
@@ -140,3 +216,5 @@ suportando atualmente: name, address, district, zipcode, number, phone.
 * 4- Remover comentario do método `isDevelopingAddon` em talentrh-components/index.js
 * 5- Executar o comando `npm link` para gerar um link do módulo
 * 6- No projeto em que será testado o addon, executar o comando `npm link talentrh-components`
+
+
