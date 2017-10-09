@@ -133,7 +133,7 @@ suportando atualmente: name, address, district, zipcode, number, phone.
 * `formatToDate=true` | Esta opção faz com que a data e/ou hora selecionada no input seja transformado de string para  formato de data.
 
 ## Input Datepair
-##### Exemplo formato date (DD/MM/YYYY):
+##### Exemplo com formato DATE (DD/MM/YYYY):
 ```
 <div id="datepair-exemplo">
   {{#talent-input-datepair
@@ -158,7 +158,7 @@ suportando atualmente: name, address, district, zipcode, number, phone.
   {{/talent-input-datepair}}
 </div>
 ```
-##### Exemplo formato time (HH:mm):
+##### Exemplo com formato TIME (HH:mm):
 ```
 <div id="datepair-exemplo">
   {{#talent-input-datepair
@@ -183,7 +183,7 @@ suportando atualmente: name, address, district, zipcode, number, phone.
   {{/talent-input-datepair}}
 </div>
 ```
-##### Exemplo formato datetime (DD/MM/YYYY HH:mm):
+##### Exemplo com formato DATETIME (DD/MM/YYYY HH:mm):
 ```
 <div id="datepair-exemplo">
   {{#talent-input-datepair
