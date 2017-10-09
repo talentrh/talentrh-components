@@ -210,11 +210,12 @@ suportando atualmente: name, address, district, zipcode, number, phone.
 ```
 3 - Como Desenvolver
 ======
-* 1- `git clone`
-* 2- `cd talentrh-components`
-* 3- Instalar as dependência executando `npm install && bower install`
-* 4- Remover comentario do método `isDevelopingAddon` em talentrh-components/index.js
-* 5- Executar o comando `npm link` para gerar um link do módulo
-* 6- No projeto em que será testado o addon, executar o comando `npm link talentrh-components`
+* 1- `git clone`.
+* 2- `cd talentrh-components`.
+* 3- Instalar as dependência executando `npm install && bower install`.
+* 4- Remover comentario do método `isDevelopingAddon` em talentrh-components/index.js.
+* 5- Executar o comando `npm link` para gerar um link do módulo.
+* 6- No projeto em que será testado o addon, executar o comando `npm link talentrh-components`.
+* 7- Write your code.
 
 
