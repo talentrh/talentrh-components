@@ -13,26 +13,32 @@ export default Ember.Component.extend({
     let configs = [
       {
         type: 'date',
-        picker: { format: 'DD/MM/YYYY', locale: 'pt-br' }
+        picker: { format: 'DD/MM/YYYY', locale: 'pt-br' },
+        mask: '99/99/99'
       },
       {
         type: 'time',
-        picker: { format: 'HH:mm', locale: 'pt-br' }
+        picker: { format: 'HH:mm', locale: 'pt-br' },
+        mask: '99:99'
       },
       {
         type: 'datetime',
-        picker: { format: 'DD/MM/YYYY HH:mm', locale: 'pt-br' }
+        picker: { format: 'DD/MM/YYYY HH:mm', locale: 'pt-br' },
+        mask: '99/99/9999 99:99'
       }
     ];
 
     configs.forEach((config)=> {
-      Ember.$(id + ' .' + config.type).datetimepicker(config.picker)
+      let selector = id + ' .' + config.type;
+      Ember.$(selector).datetimepicker(config.picker)
       .on('changeDate', (event)=> {
         this.fixDateTime(event, config.type, config.picker.format);
       })
       .on('blur', (event)=> {
         this.fixDateTime(event, config.type, config.picker.format);
       });
+
+      Ember.$(selector).inputmask(config.mask);
     });
   },
 
