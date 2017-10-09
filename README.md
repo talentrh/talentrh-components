@@ -208,7 +208,7 @@ suportando atualmente: name, address, district, zipcode, number, phone.
   {{/talent-input-datepair}}
 </div>
 ```
-3 - Desenvolver
+3 - Como Desenvolver
 ======
 * 1- `git clone`
 * 2- `cd talentrh-components`
