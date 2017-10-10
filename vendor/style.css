@@ -55,6 +55,7 @@
   cursor: pointer;
 }
 
+.talent-input-multiselect2 .talent-button-right,
 .talent-input-select2 .talent-button-right,
 .talent-input-cnpj .talent-button-right,
 .talent-input-cep .talent-button-right {
@@ -69,6 +70,7 @@
   padding: 5px;
   border-radius: 2px;
 }
+.talent-input-multiselect2 .talent-button-right + .form-group,
 .talent-input-select2 .talent-button-right + .form-group,
 .talent-input-cnpj .talent-button-right + .form-group,
 .talent-input-cep .talent-button-right + .form-group {
@@ -109,4 +111,29 @@
 @keyframes spin {
   from { transform:rotate(0deg); }
   to { transform:rotate(360deg); }
+}
+
+.talent-multiselect-container .talent-multiselect-box {
+  border: 1px #d2d2d2 solid;
+  border-radius: 3px;
+}
+.talent-multiselect-container .talent-multiselect-box ul {
+  padding: 0px;
+  margin: 0px;
+  list-style: none;
+  height: 300px;
+  overflow-y: auto;
+}
+.talent-multiselect-container .talent-multiselect-box li {
+  padding: 3px 12px;
+  cursor: pointer;
+  font-size: 15px;
+  border-bottom: 1px #e6e6e6 solid;
+}
+.talent-multiselect-container .talent-multiselect-box li:hover {
+  background: #eaeaea;
+}
+.talent-multiselect-container .input-search-multiselect {
+  padding-left: 10px;
+  color: #333;
 }
