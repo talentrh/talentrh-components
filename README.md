@@ -24,14 +24,14 @@ onUpdateStatus='nomeDaAction'
 Passar nome de uma action pela propriedade onUpdateStatus, a mesma será acionada pelo componente durante a digitação
 recebendo o tipo do campo e o status atual do componente (true ou false), sendo false caso o valor informado seja inválido e true caso seja válido.
 
-##### Exemplo da action para onUpdateStatus para controller.js:
+##### Exemplo da action para onUpdateStatus em controller.js:
 ```
 updateStatus(inputType, status) {
   this.set(inputType, status);
 }
 ```
 
-##### Exemplo da action para onUpdateStatus para route.js:
+##### Exemplo da action para onUpdateStatus em route.js:
 ```
 updateStatus(inputType, status) {
   this.get('controller').set(inputType, status);
