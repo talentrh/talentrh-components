@@ -8,6 +8,19 @@ Componentes padronizados para EmberJS.
 
 2 - Como Usar
 ======
+## Input Floating Label
+##### Exemplo:
+```
+<div class="form-group">
+  {{input-floating-label
+    class="form-control"
+    value=model.name}}
+  <label>Nome</label>
+</div>
+```
+
+O componente é criado a partir de Ember.TextField portanto contém todas as propriedades do input normal, porém o input-floating-label deferencia-se fazendo o controle da label quando o input está vazio ou com conteúdo.
+
 ## Input CPF
 ##### Exemplo:
 ```
