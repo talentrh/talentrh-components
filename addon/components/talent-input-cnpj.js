@@ -1,13 +1,14 @@
 import Ember from 'ember';
 import layout from '../templates/components/talent-input-cnpj';
-import validador from 'npm:cpf_cnpj';
+import Validation from 'talentrh-components/utils/validation';
+// import validador from 'npm:cpf_cnpj';
 
 export default Ember.Component.extend({
   layout,
   classNames: 'talent-input-validation talent-input-cnpj',
 
   didInsertElement() {
-    this.$('input').inputmask({ mask: '99.999.999/9999-99', autoUnmask: true });
+    $('input').inputmask({ mask: '99.999.999/9999-99', autoUnmask: true });
     this.validate();
   },
 
@@ -22,7 +23,7 @@ export default Ember.Component.extend({
 
     if (value.length < 14) { return this.setEffect(false); }
 
-    if (validador.CNPJ.isValid(value)) {
+    if (Validation.validaCNPJ(value)) {
       this.setEffect(true);
     } else {
       this.setEffect(false);

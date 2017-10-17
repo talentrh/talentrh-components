@@ -16,7 +16,6 @@ export default Ember.Component.extend({
 
   validate() {
     let value = this.get('value');
-    let buttonComplete = this.get('buttonComplete');
     if (!value) { return; }
 
     if (value.length < 8) { return this.setEffect(false); }
