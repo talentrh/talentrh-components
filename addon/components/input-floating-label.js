@@ -3,12 +3,20 @@ import Ember from 'ember';
 export default Ember.TextField.extend({
   classNames: ['form-control'],
 
-  didInsertElement () {
-    let elementId = '#' + this.get('elementId');
-    if(this.get('value')) {
-      $(elementId).addClass('static').addClass('dirty');
+  didInsertElement() {
+    this.floatLabel();
+  },
+
+  onChangeValue: Ember.observer('value', function () {
+    this.floatLabel();
+  }),
+
+  floatLabel() {
+    let input = Ember.$('#' + this.get('elementId'));
+    if (this.get('value')) {
+      input.addClass('static').addClass('dirty');
     } else {
-      $(elementId).addClass('static').removeClass('dirty');
+      input.removeClass('static').removeClass('dirty');
     }
   }
 });
