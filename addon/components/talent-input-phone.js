@@ -13,7 +13,8 @@ export default Ember.Component.extend({
   addMask() {
     let format = this.get('format');
     this.$('input').inputmask({
-      mask: format
+      mask: format,
+      showMaskOnHover: false
     });
   },
 

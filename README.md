@@ -228,6 +228,17 @@ suportando atualmente: name, address, district, zipcode, number, phone.
   {{/talent-input-datepair}}
 </div>
 ```
+
+## Input Phone
+##### Exemplo:
+```
+{{talent-input-phone
+  placeholder='Telefone'
+  value=modelExemplo.telefone}}
+```
+##### Outras opções:
+* `formatToNumber=true` | Esta opção faz com que o telefone presente no input seja transformado de string para formato de número.
+
 3 - Como Desenvolver
 ======
 * 1- `git clone`.
