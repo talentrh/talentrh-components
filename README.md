@@ -105,6 +105,9 @@ suportando atualmente: name, address, district, zipcode, number, phone.
   onUpdateStatus='updateStatus'
   placeholder='CNPJ'}}
 ```
+* `loadCity='nomeDaAction'` | Para o preenchimento automatico do campo CIDADE é necessário informar uma action
+para o componente, a mesma será acionada após clicar no botão de preencher automatico recebendo as informações da cidade ficando a critério do desenvolvedor a manipulação desses dados.
+
 ## Input Select2
 ##### Exemplo usando Ember Data:
 ```
