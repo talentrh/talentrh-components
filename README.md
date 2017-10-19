@@ -250,6 +250,7 @@ para o componente, a mesma será acionada após clicar no botão de preencher au
 * 4- Remover comentario do método `isDevelopingAddon` em talentrh-components/index.js.
 * 5- Executar o comando `npm link` para gerar um link do módulo.
 * 6- No projeto em que será testado o addon, executar o comando `npm link talentrh-components`.
-* 7- Write your code.
+* 7- No arquivo package.json do projeto em que será testado o addon, adicionar a dependência: `"talentrh-components": "*"`.
+* 8- Write your code.
 
 
