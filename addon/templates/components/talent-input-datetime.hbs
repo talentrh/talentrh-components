@@ -6,7 +6,9 @@
 
   <label>{{placeholder}}</label>
 
-  <a class="clear-picker" {{action 'clearPicker'}}>
-    <i class="fa fa-times" aria-hidden="true"></i>
-  </a>
+  {{#unless disabled}}
+    <a class="clear-picker" {{action 'clearPicker'}}>
+      <i class="fa fa-times" aria-hidden="true"></i>
+    </a>
+  {{/unless}}
 </div>

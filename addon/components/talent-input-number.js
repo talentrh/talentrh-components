@@ -5,10 +5,12 @@ export default Ember.TextField.extend({
 
   didInsertElement () {
     this.floatLabel();
+    this.maxRangeValidation();
   },
 
   onChangeValue: Ember.observer('value', function() {
     this.floatLabel();
+    this.maxRangeValidation();
   }),
 
   floatLabel() {
@@ -17,6 +19,21 @@ export default Ember.TextField.extend({
       input.addClass('static').addClass('dirty');
     } else {
       input.removeClass('static').removeClass('dirty');
+    }
+  },
+
+  maxRangeValidation() {
+    let max = parseInt(this.get('max'));
+    let min = parseInt(this.get('min'));
+
+    let value = parseInt(this.get('value'));
+
+    if (value > max) {
+      this.set('value', max);
+    }
+
+    if ((min || min === 0) && (value < min)) {
+      this.set('value', min);
     }
   }
 });

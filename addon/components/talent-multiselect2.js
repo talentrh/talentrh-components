@@ -9,31 +9,45 @@ export default Ember.Component.extend({
   store: Ember.inject.service(),
   ajax: Ember.inject.service(),
   chosenRecords: Ember.A(),
+  selectedRecords: Ember.A(),
 
   didInsertElement() {
-    let that = this;
-    let $select = this.buildSelect();
-    $select.on("select2:select", (e)=> {
-      if (this.get('persistOnSelecting')) {
-        that.persistUser(e.params.data.id);
-      } else {
-        that.addRecord(e.params.data.id);
-      }
+    this.selectControl();
+  },
+
+  selectControl() {
+    this.$('.talent-input-multiselect').on('click', ()=> {
+      this.$('.talent-input-multiselect input').focus();
+    });
+    let active = -1;
+    this.$(".talent-input-multiselect input").keydown(function(event) {
+      console.log('>> ', event.keyCode);
+  		var suggest_a = Ember.$('.talent-input-multiselect-options-container li');
+      console.log(suggest_a);
+  		var qnts_a = suggest_a.length;
+
+  		if(40 == event.keyCode)//seta baixo
+  			active = active>=(qnts_a-1) ? 0 : active+1;
+  		else if(38 == event.keyCode)//seta cima
+  			active = ( active<=0 ) ? qnts_a-1 : active-1;
+
+  		var a = suggest_a.removeClass('active').eq( active ).addClass('active');
+  	});
+
+    this.$('.talent-input-multiselect input').on('focus', ()=> {
+      this.loadRecordsToSelect();
+      this.$('.talent-input-multiselect-options-container').show();
     });
 
-    $select.on("select2:unselect", (e)=> {
-      if (this.get('persistOnSelecting')) {
-        that.disassociateRecord(e.params.data.id);
-      } else {
-        that.removeRecord(e.params.data.id);
+    Ember.$(window).on('click', (e)=> {
+      let multiSelect = this.$('.talent-input-multiselect');
+      let clickedElement = Ember.$(e.target);
+      let contains = this.$('.talent-input-multiselect').find(clickedElement).length;
+
+      if (!contains) {
+        this.$('.talent-input-multiselect-options-container').hide();
       }
     });
-
-    if (this.get('persistOnSelecting')) {
-      this.loadItemsSelectedOfServer();
-    } else {
-      this.loadItemsSelected();
-    }
   },
 
   loadItemsSelected() {
@@ -53,38 +67,6 @@ export default Ember.Component.extend({
       this.set('selecteds', Ember.A(selecteds));
       this.buildSelect();
     });
-  },
-
-  buildSelect: function() {
-    let config = Ember.getOwner(this).resolveRegistration('config:environment');
-    let tokenProperty = (this.get('tokenProperty') || 'token');
-
-    return this.$('select')
-    .select2({
-      ajax: {
-        headers: {
-          "Authorization": "Bearer " + this.get('session.session.content.authenticated.' + tokenProperty),
-          "Content-Type": "application/json",
-        },
-        delay: 300,
-        url: config.apiBaseUrl + this.get('endpoint'),
-        processResults: (data)=> {
-          let content = this.get('content');
-          _.remove(data, function(item) {
-            let found = content.find(function(findItem) {
-              return item.id == findItem.id;
-            });
-            return found ? true:false;
-          });
-
-          return {
-            results: $.map(data, (obj)=> {
-              obj.text = this.buildTextShow(obj);
-              return obj;
-            })
-          };
-        }
-    }});
   },
 
   addRecord(id) {
@@ -181,38 +163,77 @@ export default Ember.Component.extend({
     });
   },
 
+  loadRecordsToSelect() {
+    this.get('ajax').request(this.get('endpoint'))
+    .then((recordsFound)=> {
+      let simpleArrayOfContent = this.toSimpleObjectArray(this.get('content'));
+      recordsFound = this.toSimpleObjectArray(recordsFound);
+      recordsFound = this.excludeChosenRecords(recordsFound, simpleArrayOfContent);
+
+      this.set('recordsToChoose', Ember.A(recordsFound));
+    });
+  },
+
+  pushObject(record) {
+    let content = this.get('content');
+    let selectedRecords = this.get('selectedRecords');
+
+    record = record.toJSON({ includeId:true });
+
+    content.pushObject(record);
+    selectedRecords.pushObject({ id: data.id, text: this.buildTextShow(data) });
+  },
+
   actions: {
     openMultiSelectModal() {
       this.$('.multiSelectModal').modal('toggle');
-      this.get('ajax').request(this.get('endpoint'))
-      .then((recordsFound)=> {
-        let simpleArrayOfContent = this.toSimpleObjectArray(this.get('content'));
-        recordsFound = this.toSimpleObjectArray(recordsFound);
-        recordsFound = this.excludeChosenRecords(recordsFound, simpleArrayOfContent);
-
-        this.set('recordsToChoose', Ember.A(recordsFound));
-        this.set('chosenRecords', Ember.A(simpleArrayOfContent));
-      });
+      this.loadRecordsToSelect();
     },
 
     selectRecord(record) {
+      let selectedRecords = this.get('selectedRecords');
+
+      selectedRecords.pushObject(record);
+
       this.get('store')
       .findRecord(this.get('modelName'), record.id)
       .then((found)=> {
-        record.emberData = found;
-
-        this.get('chosenRecords').pushObject(record);
+        this.get('content').pushObject(found);
         this.get('recordsToChoose').removeObject(record);
+        this.$('.talent-input-multiselect input').focus();
+        this.$('.talent-input-multiselect-options-container').hide();
+        this.set('searchTerm', '');
+      })
+      .catch(()=> {
+        selectedRecords.removeObject(record);
       });
     },
 
+    // selectRecord(record) {
+    //   this.get('store')
+    //   .findRecord(this.get('modelName'), record.id)
+    //   .then((found)=> {
+    //     record.emberData = found;
+    //
+    //     this.get('chosenRecords').pushObject(record);
+    //     this.get('recordsToChoose').removeObject(record);
+    //   });
+    // },
+
     deselectRecord(record) {
-      this.get('recordsToChoose').unshiftObject(record);
-      this.get('chosenRecords').removeObject(record);
+      let content = this.get('content');
+      let selectedRecords = this.get('selectedRecords');
+      let recordsToChoose = this.get('recordsToChoose');
+      let found = content.findBy('id', record.id.toString());
+
+      recordsToChoose.unshiftObject(found);
+      content.removeObject(found);
+      selectedRecords.removeObject(record);
     },
 
     searchByTerm() {
       let term = this.get('searchTerm');
+      this.$('.talent-input-multiselect-options-container').show();
 
       this.get('ajax').request(this.get('endpoint') + '?term=' + term)
       .then((records)=> {

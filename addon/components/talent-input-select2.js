@@ -84,7 +84,7 @@ export default Ember.Component.extend({
     },
 
     buttonNew() {
-      this.sendAction('onButtonNew');
+      this.sendAction('onButtonNew', this.get('inputType'));
     }
   },
 
@@ -93,9 +93,15 @@ export default Ember.Component.extend({
     let select2Selected = _.first(select.select2('data'));
     let selected = this.get('selected');
 
-    if (!select2Selected || !selected) return;
+    if (!selected) {
+      select.val('').trigger('change');
+      this.set('showStartValue', true);
+      return;
+    }
 
-    if (parseInt(select2Selected.id) !== parseInt(selected.id)) {
+    if (!select2Selected || !selected.get) return;
+
+    if (parseInt(select2Selected.id) !== parseInt(selected.get('id'))) {
       select.val('').trigger('change');
       this.set('showStartValue', true);
     } else {

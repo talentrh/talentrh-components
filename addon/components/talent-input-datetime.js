@@ -21,7 +21,7 @@ export default Ember.Component.extend({
     let optionMap = [
       { key: 'format' },
       { key: 'locale', default: 'pt-br' },
-      { key: 'userCurrent', default: false }
+      { key: 'useCurrent', default: false }
     ];
 
     let options = {};
@@ -76,7 +76,7 @@ export default Ember.Component.extend({
     let valueSelected = this.get('valueSelected');
     let format = this.get('format');
 
-    if (!valueSelected) return;
+    if (!valueSelected || !moment(valueSelected, format, true).isValid()) return;
 
     if (formatToDate) {
       this.set('value', moment(valueSelected, format).toDate());

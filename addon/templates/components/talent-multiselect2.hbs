@@ -1,25 +1,26 @@
-<div class="form-group">
-  {{#power-select-multiple
-    options=names
-    selected=name
-    class="form-control"
-    placeholder="Select some names..."
-    onchange=(action (mut name))
-    as |name|
-  }}
-  {{name}}
-  {{/power-select-multiple}}
-  <label>Teste</label>
-</div>
-{{!-- <button type="button" class="talent-button-right" {{action 'openMultiSelectModal'}}>
+<button type="button" class="talent-button-right" {{action 'openMultiSelectModal'}}>
   <i class="fa fa-th-list"></i>
 </button>
 <div class="form-group">
-  <select class="form-control select2-list dirty" multiple>
-		{{#each selecteds as |selected|}}
-      <option value= {{selected.id}} selected> {{selected.text}} </option>
-		{{/each}}
-	</select>
+  <div class="talent-input-multiselect form-control dirty">
+    {{#each selectedRecords as |record|}}
+      <div class="talent-input-multiselect-selected">
+        <i class="fa fa-times input-multiselect-close-selected" {{action 'deselectRecord' record}}></i>
+        {{record.text}}
+      </div>
+    {{/each}}
+
+    {{input type="text" value=searchTerm key-up="searchByTerm" autocomplete="off"}}
+    <div class="fix-selecteds"></div>
+
+    <div class="talent-input-multiselect-options-container" style="display: none;">
+      <ul>
+        {{#each recordsToChoose as |record|}}
+          <li {{action 'selectRecord' record}}>{{record.text}}</li>
+        {{/each}}
+      </ul>
+    </div>
+  </div>
   <label>Selecione Admin</label>
 </div>
 
@@ -69,4 +70,4 @@
       </div>
     </div>
   </div>
-</div> --}}
+</div>
