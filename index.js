@@ -3,9 +3,9 @@
 
 module.exports = {
   name: 'talentrh-components',
-  // isDevelopingAddon() {
-  //   return true;
-  // },
+  isDevelopingAddon() {
+    return true;
+  },
   included: function(app) {
     app.import('vendor/style.css');
 

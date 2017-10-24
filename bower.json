@@ -6,6 +6,6 @@
     "select2": "4.0.3",
     "lodash": "^2.4.0",
     "sweetalert2": "^6.10.1",
-    "multiselect": "^0.9.12"
+    "inputmask": "^3.3.10"
   }
 }

@@ -1,6 +1,6 @@
 import Ember from 'ember';
 import layout from '../templates/components/talent-input-cnpj';
-import validador from 'npm:cpf_cnpj';
+import Validation from 'talentrh-components/utils/validation';
 
 export default Ember.Component.extend({
   layout,
@@ -22,7 +22,7 @@ export default Ember.Component.extend({
 
     if (value.length < 14) { return this.setEffect(false); }
 
-    if (validador.CNPJ.isValid(value)) {
+    if (Validation.isValidCnpj(value)) {
       this.setEffect(true);
     } else {
       this.setEffect(false);
@@ -81,6 +81,11 @@ export default Ember.Component.extend({
         this.set('zipcode', data.cep);
         this.set('number', data.numero);
         this.set('phone', data.telefone);
+
+        let loadCity = this.get('loadCity');
+        if (loadCity) {
+          this.sendAction('loadCity', data);
+        }
       }).catch(() => {
         this.set('searching', false);
         swal('Ops', 'Não foi possível completar automaticamente.', 'info');

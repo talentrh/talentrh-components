@@ -3,11 +3,24 @@ Componentes padronizados para EmberJS.
 
 1 - Instalação
 ======
-* 1- Adicionar no package.json: `"talentrh-components": "talentrh/talentrh-components#branchOuTag"`.
+* 1- Adicionar ao package.json: `"talentrh-components": "talentrh/talentrh-components#branchOuTag"`.
 * 2- Executar o comando `npm install`.
 
 2 - Como Usar
 ======
+## Input Floating Label
+##### Exemplo:
+```
+<div class="form-group">
+  {{input-floating-label
+    class="form-control"
+    value=model.name}}
+  <label>Nome</label>
+</div>
+```
+
+O componente é criado a partir de Ember.TextField portanto contém todas as propriedades do input normal, porém o input-floating-label deferencia-se fazendo o controle da label quando o input está vazio ou com conteúdo.
+
 ## Input CPF
 ##### Exemplo:
 ```
@@ -24,10 +37,17 @@ onUpdateStatus='nomeDaAction'
 Passar nome de uma action pela propriedade onUpdateStatus, a mesma será acionada pelo componente durante a digitação
 recebendo o tipo do campo e o status atual do componente (true ou false), sendo false caso o valor informado seja inválido e true caso seja válido.
 
-##### Exemplo da action para onUpdateStatus:
+##### Exemplo da action para onUpdateStatus em controller.js:
 ```
 updateStatus(inputType, status) {
   this.set(inputType, status);
+}
+```
+
+##### Exemplo da action para onUpdateStatus em route.js:
+```
+updateStatus(inputType, status) {
+  this.get('controller').set(inputType, status);
 }
 ```
 Neste exemplo de action, a mesma vai atualizar a propriedade com o nome inputType para o status atual do componente, permitindo saber se o valor do input é valido antes de submeter o form.
@@ -85,6 +105,9 @@ suportando atualmente: name, address, district, zipcode, number, phone.
   onUpdateStatus='updateStatus'
   placeholder='CNPJ'}}
 ```
+* `loadCity='nomeDaAction'` | Para o preenchimento automatico do campo CIDADE é necessário informar uma action
+para o componente, a mesma será acionada após clicar no botão de preencher automatico recebendo as informações da cidade ficando a critério do desenvolvedor a manipulação desses dados.
+
 ## Input Select2
 ##### Exemplo usando Ember Data:
 ```
@@ -133,7 +156,7 @@ suportando atualmente: name, address, district, zipcode, number, phone.
 * `formatToDate=true` | Esta opção faz com que a data e/ou hora selecionada no input seja transformado de string para  formato de data.
 
 ## Input Datepair
-##### Exemplo formato date (DD/MM/YYYY):
+##### Exemplo com formato DATE (DD/MM/YYYY):
 ```
 <div id="datepair-exemplo">
   {{#talent-input-datepair
@@ -158,7 +181,7 @@ suportando atualmente: name, address, district, zipcode, number, phone.
   {{/talent-input-datepair}}
 </div>
 ```
-##### Exemplo formato time (HH:mm):
+##### Exemplo com formato TIME (HH:mm):
 ```
 <div id="datepair-exemplo">
   {{#talent-input-datepair
@@ -183,7 +206,7 @@ suportando atualmente: name, address, district, zipcode, number, phone.
   {{/talent-input-datepair}}
 </div>
 ```
-##### Exemplo formato datetime (DD/MM/YYYY HH:mm):
+##### Exemplo com formato DATETIME (DD/MM/YYYY HH:mm):
 ```
 <div id="datepair-exemplo">
   {{#talent-input-datepair
@@ -208,13 +231,26 @@ suportando atualmente: name, address, district, zipcode, number, phone.
   {{/talent-input-datepair}}
 </div>
 ```
-3 - Desenvolver
+
+## Input Phone
+##### Exemplo:
+```
+{{talent-input-phone
+  placeholder='Telefone'
+  value=modelExemplo.telefone}}
+```
+##### Outras opções:
+* `formatToNumber=true` | Esta opção faz com que o telefone presente no input seja transformado de string para formato de número.
+
+3 - Como Desenvolver
 ======
-* 1- `git clone`
-* 2- `cd talentrh-components`
-* 3- Instalar as dependência executando `npm install && bower install`
-* 4- Remover comentario do método `isDevelopingAddon` em talentrh-components/index.js
-* 5- Executar o comando `npm link` para gerar um link do módulo
-* 6- No projeto em que será testado o addon, executar o comando `npm link talentrh-components`
+* 1- `git clone`.
+* 2- `cd talentrh-components`.
+* 3- Instalar as dependência executando `npm install && bower install`.
+* 4- Remover comentario do método `isDevelopingAddon` em talentrh-components/index.js.
+* 5- Executar o comando `npm link` para gerar um link do módulo.
+* 6- No projeto em que será testado o addon, executar o comando `npm link talentrh-components`.
+* 7- No arquivo package.json do projeto em que será testado o addon, adicionar a dependência: `"talentrh-components": "*"`.
+* 8- Write your code.
 
 
