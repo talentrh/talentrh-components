@@ -6,7 +6,7 @@ module.exports = {
   isDevelopingAddon() {
     return true;
   },
-  included: function(app) {
+  included: function (app) {
     app.import('vendor/style.css');
 
     /*--- import select2 ---*/
@@ -18,5 +18,9 @@ module.exports = {
     app.import('bower_components/sweetalert2/dist/sweetalert2.min.js');
     app.import('bower_components/sweetalert2/dist/sweetalert2.css');
     /*--- import sweetalert ---*/
+
+    /*--- import inputmask ---*/
+    app.import('bower_components/inputmask/dist/min/jquery.inputmask.bundle.min.js');
+    /*--- import inputmask ---*/
   }
 };
