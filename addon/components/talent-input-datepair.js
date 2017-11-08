@@ -14,7 +14,7 @@ export default Ember.Component.extend({
       {
         type: 'date',
         picker: { format: 'DD/MM/YYYY', locale: 'pt-br' },
-        mask: '99/99/99'
+        mask: '99/99/9999'
       },
       {
         type: 'time',
@@ -38,7 +38,7 @@ export default Ember.Component.extend({
         this.fixDateTime(event, config.type, config.picker.format);
       });
 
-      Ember.$(selector).inputmask(config.mask);
+      Ember.$(selector).inputmask({ mask: config.mask, showMaskOnHover: false });
     });
   },
 

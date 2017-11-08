@@ -67,7 +67,7 @@ export default Ember.Component.extend({
   addMask() {
     var mask = this.get('mask');
     if (mask) {
-      this.$('input').inputmask(mask);
+      this.$('input').inputmask({ mask: mask, showMaskOnHover: false });
     }
   },
 
