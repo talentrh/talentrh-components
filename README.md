@@ -242,6 +242,30 @@ para o componente, a mesma será acionada após clicar no botão de preencher au
 ##### Outras opções:
 * `formatToNumber=true` | Esta opção faz com que o telefone presente no input seja transformado de string para formato de número.
 
+## Helper CEP
+##### Exemplo:
+```
+{{talent-format-cep model.cep}}
+```
+
+## Helper CNPJ
+##### Exemplo:
+```
+{{talent-format-cnpj model.cnpj}}
+```
+
+## Helper CPF
+##### Exemplo:
+```
+{{talent-format-cpf model.cpf}}
+```
+
+## Helper Phone
+##### Exemplo:
+```
+{{talent-format-phone model.phone}}
+```
+
 3 - Como Desenvolver
 ======
 * 1- `git clone`.

@@ -216,3 +216,8 @@
   background: #5c6a88;
   color: #fff;
 }
+.clear-picker {
+  position: absolute;
+  right: 15px;
+  top: 20px;
+}

@@ -38,7 +38,7 @@ export default Ember.Component.extend({
         this.fixDateTime(event, config.type, config.picker.format);
       });
 
-      Ember.$(selector).inputmask(config.mask);
+      Ember.$(selector).inputmask({ mask: config.mask, showMaskOnHover: false });
     });
   },
 

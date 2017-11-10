@@ -6,7 +6,7 @@ module.exports = {
   isDevelopingAddon() {
     return true;
   },
-  included: function(app) {
+  included: function (app) {
     app.import('vendor/style.css');
 
     /*--- import select2 ---*/

@@ -7,7 +7,7 @@ export default Ember.Component.extend({
   classNames: 'talent-input-validation talent-input-cnpj',
 
   didInsertElement() {
-    this.$('input').inputmask({ mask: '99.999.999/9999-99', autoUnmask: true });
+    this.$('input').inputmask({ mask: '99.999.999/9999-99', autoUnmask: true, showMaskOnHover: false });
     this.validate();
   },
 
