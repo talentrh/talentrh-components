@@ -21,6 +21,7 @@ export default Ember.Component.extend({
     let optionMap = [
       { key: 'format' },
       { key: 'locale', default: 'pt-br' },
+      { key: 'showTodayButton', default: true },
       { key: 'useCurrent', default: false }
     ];
 

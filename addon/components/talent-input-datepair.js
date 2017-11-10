@@ -13,17 +13,17 @@ export default Ember.Component.extend({
     let configs = [
       {
         type: 'date',
-        picker: { format: 'DD/MM/YYYY', locale: 'pt-br' },
+        picker: { format: 'DD/MM/YYYY', locale: 'pt-br', showTodayButton: true },
         mask: '99/99/9999'
       },
       {
         type: 'time',
-        picker: { format: 'HH:mm', locale: 'pt-br' },
+        picker: { format: 'HH:mm', locale: 'pt-br', showTodayButton: true },
         mask: '99:99'
       },
       {
         type: 'datetime',
-        picker: { format: 'DD/MM/YYYY HH:mm', locale: 'pt-br' },
+        picker: { format: 'DD/MM/YYYY HH:mm', locale: 'pt-br', showTodayButton: true },
         mask: '99/99/9999 99:99'
       }
     ];
