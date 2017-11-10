@@ -14,7 +14,7 @@ export default Ember.Component.extend({
       {
         type: 'date',
         picker: { format: 'DD/MM/YYYY', locale: 'pt-br' },
-        mask: '99/99/99'
+        mask: '99/99/9999'
       },
       {
         type: 'time',

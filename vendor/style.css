@@ -45,6 +45,13 @@
   background: #4cc77f;
 }
 
+.talent-input-select2 label{
+  width: 100%;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
 .talent-input-select2 .clear-select2 {
   position: absolute;
   right: 25px;
