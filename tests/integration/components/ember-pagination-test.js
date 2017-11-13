@@ -1,7 +1,7 @@
 import { moduleForComponent, test } from 'ember-qunit';
 import hbs from 'htmlbars-inline-precompile';
 
-moduleForComponent('simple-light-table', 'Integration | Component | simple light table', {
+moduleForComponent('ember-pagination', 'Integration | Component | ember pagination', {
   integration: true
 });
 
@@ -10,15 +10,15 @@ test('it renders', function(assert) {
   // Set any properties with this.set('myProperty', 'value');
   // Handle any actions with this.on('myAction', function(val) { ... });
 
-  this.render(hbs`{{simple-light-table}}`);
+  this.render(hbs`{{ember-pagination}}`);
 
   assert.equal(this.$().text().trim(), '');
 
   // Template block usage:
   this.render(hbs`
-    {{#simple-light-table}}
+    {{#ember-pagination}}
       template block text
-    {{/simple-light-table}}
+    {{/ember-pagination}}
   `);
 
   assert.equal(this.$().text().trim(), 'template block text');

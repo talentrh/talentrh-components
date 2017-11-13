@@ -58,8 +58,6 @@ export default Ember.Mixin.create({
   fetchRecords: task(function*() {
     let properties = this.getProperties(['skip', 'limit', 'sort']);
 
-    // console.log(properties);
-
     let records = yield this.get('store').query(this.get('modelName'), properties);
     this.get('model').pushObjects(records.toArray());
     this.set('meta', records.get('meta'));

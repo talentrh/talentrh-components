@@ -1,0 +1,59 @@
+<div class="datatable-header">
+  {{!-- <select name="datatable-length">
+    <option value="10">10</option>
+    <option value="25">25</option>
+    <option value="50">50</option>
+    <option value="100">100</option>
+  </select>
+  <label for="datatable-length">
+    registros por página
+  </label> --}}
+  &nbsp;
+  {{input type='text' value=searchTerms class="datatable-filter" key-up='searchOnKeyUp'}}
+  <i class="fa fa-search"></i>
+</div>
+<table class="table table-hover datatable">
+  <caption>Pagina {{page}}</caption>
+  <thead>
+    <tr>
+      {{#each columnNames as |column|}}
+        <th>{{column}}</th>
+      {{/each}}
+    </tr>
+  </thead>
+  <tbody>
+    {{#unless isLoadingData}}
+      {{#unless hasBlock}}
+        {{#each model as |item|}}
+          <tr>
+            {{#each columns as |modelColumn|}}
+            <td>{{get-attribute model=item attribute=modelColumn}}</td>
+            {{/each}}
+            {{#if showActions}}
+              <td class="text-right">
+                {{#link-to 'configuration.user.edit' item.id}}
+                <button type="button" class="btn btn-datatable" data-tooltip="Editar usuário">
+                  <i class="fa fa-pencil"></i>
+                </button>
+                {{/link-to}}
+              </td>
+            {{/if}}
+          </tr>
+        {{/each}}
+      {{else}}
+        {{yield model}}
+      {{/unless}}
+    {{else}}
+    {{!-- #each - Mostra o loading de dados --}}
+      {{#each fakeRowsCounter as |row|}}
+        <tr class="datatable-animated-background">
+          {{#each columnNames as |i|}}
+            <td></td>
+          {{/each}}
+        </tr>
+      {{/each}}
+    {{!-- fim- each  --}}
+    {{/unless}}
+  </tbody>
+</table>
+{{ember-pagination perPage=12 limit=5 content=model total=model.meta.total loadAction='changePage'}}
