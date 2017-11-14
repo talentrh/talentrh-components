@@ -10,6 +10,7 @@ export default Ember.Component.extend({
   showRows: 5,
   page: 1,
   showActions: true,
+  showDeleteButton: true,
 
   didInsertElement() {
     if(typeof this.get('columnNames') === 'string' ) {
