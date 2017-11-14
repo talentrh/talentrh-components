@@ -31,11 +31,18 @@
             {{/each}}
             {{#if showActions}}
               <td class="text-right">
-                {{#link-to 'configuration.user.edit' item.id}}
-                <button type="button" class="btn btn-datatable" data-tooltip="Editar usuário">
-                  <i class="fa fa-pencil"></i>
-                </button>
-                {{/link-to}}
+                {{#if editRoute}}
+                  {{#link-to editRoute item.id}}
+                  <button type="button" class="btn btn-datatable" data-tooltip="Editar">
+                    <i class="fa fa-pencil"></i>
+                  </button>
+                  {{/link-to}}
+                {{/if}}
+                {{#if deleteButton}}
+                  <button type="button" class="btn btn-danger" data-tooltip="Apagar" {{action 'delete' item}}>
+                    <i class="fa fa-times"></i>
+                  </button>
+                {{/if}}
               </td>
             {{/if}}
           </tr>
