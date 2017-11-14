@@ -85,9 +85,32 @@ export default Ember.Component.extend({
 			}
 		},
     delete(model) {
-      var answer = confirm("Tem certeza que deseja excluir o registro?");
-      if(answer) {
-        model.destroyRecord();
+      if(swal) {
+        swal({
+            title: "Tem certeza que deseja remover este registro?",
+            text: "Este registro será permanentemente removido do Nela e não será possível recupera-lo!",
+            type: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#DD6B55",
+            confirmButtonText: "Sim, remover!",
+            cancelButtonText: "Cancelar!",
+            closeOnConfirm: false,
+            closeOnCancel: false
+          },
+          function(isConfirm) {
+            if (isConfirm) {
+              model.destroyRecord().then(() => {
+                  swal("Removido com sucesso!", "", "success");
+                })
+                .catch((error) => {
+                  swal("Ops", "Não foi possível remover este registro", "error");
+                });
+            }
+          });
+      } else {
+        if(confirm("Tem certeza que deseja excluir o registro?")) {
+          model.destroyRecord();
+        }
       }
     }
 	}
