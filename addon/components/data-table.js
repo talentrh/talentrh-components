@@ -1,3 +1,4 @@
+/*global console, confirm*/
 import Ember from 'ember';
 import layout from '../templates/components/data-table';
 
@@ -67,7 +68,7 @@ export default Ember.Component.extend({
 	actions: {
 		changePage(page) {
       this.set('page', page);
-			this.set('filters.skip', (page-1) * this.get("showRows"));;
+			this.set('filters.skip', (page-1) * this.get("showRows"));
 			this.loadData();
 		},
     searchOnKeyUp: function(searchTerms) {
