@@ -8,6 +8,40 @@ Componentes padronizados para EmberJS.
 
 2 - Como Usar
 ======
+
+## DATA TABLE
+Cria um DATATABLE com o model escolhido, com filtro e paginação. O componente {{data-table}} pode ser utilizado de duas formas: autoprocessamento, ou customizado. 
+
+### Autoprocessamento
+Nesta forma de utilização, basta informar todos os parâmetros
+##### Exemplo:
+```
+{{data-table modelName='user'
+  columns='avatarUrl,firstName,lastName,professionalEmail,active,professionalPhone'
+  columnNames='Foto,Nome,Email,Status,Telefone'
+  showActions=true}}
+```
+### Customizado
+Nesta forma de utilização, deve-se obter o dataset ao final da declaração do componente (as |dataSet|) e então processar a tag <tr> de acordo com a customização desejada.
+##### Exemplo:
+```
+{{#data-table modelName='user'
+  columns='avatarUrl,firstName,lastName,professionalEmail,active,professionalPhone'
+  columnNames='Foto,Nome,Email,Status,Telefone'
+  showActions=true
+  as |dataSet|}}
+  {{#each dataSet as |data|}}
+   <tr>
+     <td><img src={{s3-url data.avatarUrl}} class="datatable-thumb" alt=""></td>
+      <td>{{data.firstName}} {{data.lastName}}</td>
+      <td>{{data.professionalEmail}}</td>
+      <td>{{if data.active 'Ativo' 'Inativo'}}</td>
+      <td>{{data.professionalPhone}}</td>
+   </tr>
+  {{/each}}
+{{/data-table}}
+```
+
 ## Input Floating Label
 ##### Exemplo:
 ```
