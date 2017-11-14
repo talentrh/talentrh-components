@@ -221,3 +221,22 @@
   right: 15px;
   top: 20px;
 }
+
+.datatable-animated-background {
+  -webkit-animation-duration: 1.5s;
+          animation-duration: 1.5s;
+  -webkit-animation-fill-mode: forwards;
+          animation-fill-mode: forwards;
+  -webkit-animation-iteration-count: infinite;
+          animation-iteration-count: infinite;
+  -webkit-animation-timing-function: linear;
+          animation-timing-function: linear;
+  -webkit-animation-name: placeHolderShimmer;
+          animation-name: placeHolderShimmer;
+  background: #f6f7f8;
+  background: -webkit-linear-gradient(left, transparent 8%, #dddddd 18%, transparent 33%);
+  background: linear-gradient(to right, transparent 8%, #dddddd 18%, transparent 33%);
+  background-size: 800px 104px;
+  height: 76px;
+  position: relative;
+}
