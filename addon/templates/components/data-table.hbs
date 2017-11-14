@@ -48,7 +48,7 @@
           </tr>
         {{/each}}
       {{else}}
-        {{yield model delete}}
+        {{yield model (action 'delete')}}
       {{/unless}}
     {{else}}
     {{!-- #each - Mostra o loading de dados --}}
