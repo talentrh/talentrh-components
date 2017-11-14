@@ -21,14 +21,15 @@ export default Ember.Component.extend({
     });
     let active = -1;
     this.$(".talent-input-multiselect input").keydown(function(event) {
-      console.log('>> ', event.keyCode);
   		var suggest_a = Ember.$('.talent-input-multiselect-options-container li');
   		var qnts_a = suggest_a.length;
 
-  		if(40 === event.keyCode)//seta baixo
-  			active = active>=(qnts_a-1) ? 0 : active+1;
-  		else if(38 === event.keyCode)//seta cima
-  			active = ( active<=0 ) ? qnts_a-1 : active-1;
+  		if(40 === event.keyCode) {//seta baixo
+  			active = active>=(qnts_a-1) ? 0 : active++;
+      }
+  		else if(38 === event.keyCode) {//seta cima
+  			active = ( active<=0 ) ? qnts_a-1 : active--;
+      }
 
   		var a = suggest_a.removeClass('active').eq( active ).addClass('active');
   	});

@@ -17,7 +17,7 @@ export default Ember.Component.extend({
 
   validate() {
     let value = this.get('value');
-    if (!value) {return};
+    if (!value) {return;}
 
 		return Validation.isValidCpf(value) ? this.setEffect(true) : this.setEffect(false);
   },

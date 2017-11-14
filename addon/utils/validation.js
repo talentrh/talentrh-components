@@ -24,10 +24,11 @@ export default {
 
     let rev = 11 - (add % 11);
 
-    if (rev == 10 || rev == 11)
+    if (rev === 10 || rev === 11) {
       rev = 0;
+    }
 
-    if (rev != parseInt(cpf.charAt(9))) {
+    if (rev !== parseInt(cpf.charAt(9))) {
       return false;
     }
 
@@ -38,8 +39,9 @@ export default {
     }
 
     rev = 11 - (add % 11);
-    if (rev == 10 || rev == 11)
+    if (rev === 10 || rev === 11) {
       rev = 0;
+    }
 
     if (rev != parseInt(cpf.charAt(10))) {
       return false;
@@ -51,7 +53,7 @@ export default {
   isValidCnpj(cnpj) {
     cnpj = cnpj.replace(/[^\d]+/g, '');
 
-    if (cnpj == '' || cnpj.length !== 14) {
+    if (cnpj === '' || cnpj.length !== 14) {
       return false;
     }
 
@@ -70,15 +72,16 @@ export default {
       }
 
     // Valida DVs
-    var len = cnpj.length - 2
+    var len = cnpj.length - 2;
     var numbers = cnpj.substring(0, len);
     var digits = cnpj.substring(len);
     var sum = 0;
     var pos = len - 7;
     for (var i = len; i >= 1; i--) {
       sum += numbers.charAt(len - i) * pos--;
-      if (pos < 2)
+      if (pos < 2) {
         pos = 9;
+      }
     }
     var result = sum % 11 < 2 ? 0 : 11 - sum % 11;
     if (result !== digits.charAt(0)) {
@@ -91,8 +94,9 @@ export default {
     pos = len - 7;
     for (i = len; i >= 1; i--) {
       sum += numbers.charAt(len - i) * pos--;
-      if (pos < 2)
+      if (pos < 2) {
         pos = 9;
+      }
     }
     result = sum % 11 < 2 ? 0 : 11 - sum % 11;
     if (result !== digits.charAt(1)) {

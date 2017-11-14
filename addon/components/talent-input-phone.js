@@ -42,7 +42,7 @@ export default Ember.Component.extend({
     let valueSelected = this.get('valueSelected');
     let format = this.get('format');
 
-    if (!valueSelected) {return};
+    if (!valueSelected) {return;}
 
     if (formatToNumber) {
       this.set('value', Inputmask.unmask(valueSelected, {

@@ -66,7 +66,7 @@ export default Ember.Component.extend({
     let splited = showProperties.split('|');
     let textShow = '';
 
-    if (!obj || !showProperties) {return};
+    if (!obj || !showProperties) {return;}
     splited.forEach((item)=> {
       textShow += obj[item] || item;
     });
@@ -97,7 +97,7 @@ export default Ember.Component.extend({
       return;
     }
 
-    if (!select2Selected || !selected.get) {return};
+    if (!select2Selected || !selected.get) {return;}
 
     if (parseInt(select2Selected.id) !== parseInt(selected.get('id'))) {
       select.val('').trigger('change');
