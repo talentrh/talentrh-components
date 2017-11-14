@@ -10,16 +10,29 @@ Componentes padronizados para EmberJS.
 ======
 
 ## DATA TABLE
-Cria um DATATABLE com o model escolhido, com filtro e paginação. O componente {{data-table}} pode ser utilizado de duas formas: autoprocessamento, ou customizado. 
+Cria um DATATABLE com o model escolhido, com filtro e paginação. O componente {{data-table}} pode ser utilizado de duas formas: autoprocessamento, ou customizado. Veja os exemplos abaixo.
+
+#### Opções
+* columns: (String) Colunas do model que serão exibidas e/ou serão incluidas no filtro por texto
+* columnNames: (String) Cabeçalhos a serem exibidos nas colunas da tabela
+* viewRoute: (String) rota para onde o botão 'Ver' deverá apontar, no mesmo formato que se usaria em um link-to
+* editRoute: (String) rota para onde o botão 'Editar' deverá apontar, no mesmo formato que se usaria em um link-to
+* showDeleteButton: (Boolean) indica se deverá mostrar o botão 'Remover'. Padrão: true
+* showActions: (Boolean) indica se deverá mostrar a coluna de ações sobre os models. Padrão: true
+
+Obs: o size de colmuns e columnNames deve ser o mesmo. E.g. this.get('columns.length') === this.get('columnNames.length)
 
 ### Autoprocessamento
 Nesta forma de utilização, basta informar todos os parâmetros
 ##### Exemplo:
 ```
-{{data-table modelName='user'
-  columns='avatarUrl,firstName,lastName,professionalEmail,active,professionalPhone'
-  columnNames='Foto,Nome,Email,Status,Telefone'
-  showActions=true}}
+{{data-table modelName='accessProfile'
+   columns="title,defaultProfile,description,users"
+   columnNames="Título,Padrão,Descrição,Usuários neste perfil"
+   viewRoute='configuration.userProfile.show'
+   editRoute='configuration.userProfile.edit'
+   deleteButton=true
+   showActions=true}}
 ```
 ### Customizado
 Nesta forma de utilização, deve-se obter o dataset ao final da declaração do componente (as |dataSet|) e então processar a tag <tr> de acordo com a customização desejada.
