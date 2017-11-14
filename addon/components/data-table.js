@@ -12,6 +12,12 @@ export default Ember.Component.extend({
   showActions: true,
 
   didInsertElement() {
+    if(typeof this.get('columnNames') === 'string' ) {
+      this.set('columnNames', this.get('columnNames').split(','));
+    }
+    if(typeof this.get('columns') === 'string' ) {
+      this.set('columns', this.get('columns').split(','));
+    }
     if(this.get('columns.length') !== this.get('columnNames.length')) {
       console.warn('DATA-TABLE: A quantidade de parâmetros de "column" e "columnNames" é diferente e pode gerar erros de visualisação');
     }
@@ -54,7 +60,6 @@ export default Ember.Component.extend({
       obj[column] = {contains: search};
       query.or.push(obj);
     });
-    console.log(query);
     return query;
   },
 
@@ -76,6 +81,12 @@ export default Ember.Component.extend({
 					this.loadData();
 				}, 300));
 			}
-		}
+		},
+    delete(model) {
+      var answer = confirm("Tem certeza que deseja excluir o registro?");
+      if(answer) {
+        model.destroyRecord();
+      }
+    }
 	}
 });
