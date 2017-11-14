@@ -88,14 +88,14 @@ export default Ember.Component.extend({
       if(swal) {
         swal({
             title: "Tem certeza que deseja remover este registro?",
-            text: "Este registro será permanentemente removido do Nela e não será possível recupera-lo!",
+            text: "Este registro será permanentemente removido e não será possível recupera-lo!",
             type: "warning",
             showCancelButton: true,
             confirmButtonColor: "#DD6B55",
             confirmButtonText: "Sim, remover!",
             cancelButtonText: "Cancelar!",
             closeOnConfirm: false,
-            closeOnCancel: false
+            closeOnCancel: true
           },
           function(isConfirm) {
             if (isConfirm) {
@@ -109,7 +109,12 @@ export default Ember.Component.extend({
           });
       } else {
         if(confirm("Tem certeza que deseja excluir o registro?")) {
-          model.destroyRecord();
+          model.destroyRecord().then(() => {
+              alert("Removido com sucesso!");
+            })
+            .catch((error) => {
+              alert("Ops", "Não foi possível remover este registro");
+            });
         }
       }
     }
