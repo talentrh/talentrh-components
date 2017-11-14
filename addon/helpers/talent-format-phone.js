@@ -1,4 +1,5 @@
 import Ember from 'ember';
+/*global Inputmask*/
 
 export function talentFormatPhone(params/*, hash*/) {
   if (!params[0]) {

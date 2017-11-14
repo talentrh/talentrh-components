@@ -23,12 +23,11 @@ export default Ember.Component.extend({
     this.$(".talent-input-multiselect input").keydown(function(event) {
       console.log('>> ', event.keyCode);
   		var suggest_a = Ember.$('.talent-input-multiselect-options-container li');
-      console.log(suggest_a);
   		var qnts_a = suggest_a.length;
 
-  		if(40 == event.keyCode)//seta baixo
+  		if(40 === event.keyCode)//seta baixo
   			active = active>=(qnts_a-1) ? 0 : active+1;
-  		else if(38 == event.keyCode)//seta cima
+  		else if(38 === event.keyCode)//seta cima
   			active = ( active<=0 ) ? qnts_a-1 : active-1;
 
   		var a = suggest_a.removeClass('active').eq( active ).addClass('active');
@@ -107,12 +106,12 @@ export default Ember.Component.extend({
 
   persistUser(id) {
     this.get('ajax').post('userlinks/' + this.get('model.id') + '/users/' + id)
-      .then( (response) => {
+      .then( () => {
         this.get('model').reload();
 
         toastr.success('Pronto', 'Associado com sucesso');
       })
-      .catch((response) => {
+      .catch(() => {
         let message = response.errors && response.errors.length > 0 ? response.errors[0].title : 'Erro desconhecido';
 
         toastr.error('Ops', message);
@@ -121,7 +120,7 @@ export default Ember.Component.extend({
 
   disassociateRecord(id) {
     this.get('ajax').delete('userlinks/' + this.get('model.id') + '/users/' + id)
-      .then( (response) => {
+      .then( () => {
         this.get('model').reload();
         toastr.success('Pronto', 'Removido com sucesso');
       });

@@ -57,9 +57,9 @@ export default Ember.Component.extend({
     } else {
       if (formatToDate) {
         let format = this.get('format');
-        this.set('valueSelected', moment(value).format(format))
+        this.set('valueSelected', moment(value).format(format));
       } else {
-        this.set('valueSelected', value)
+        this.set('valueSelected', value);
       }
     }
 
@@ -77,7 +77,7 @@ export default Ember.Component.extend({
     let valueSelected = this.get('valueSelected');
     let format = this.get('format');
 
-    if (!valueSelected || !moment(valueSelected, format, true).isValid()) return;
+    if (!valueSelected || !moment(valueSelected, format, true).isValid()) {return};
 
     if (formatToDate) {
       this.set('value', moment(valueSelected, format).toDate());

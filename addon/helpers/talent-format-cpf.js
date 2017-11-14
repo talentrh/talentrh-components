@@ -1,4 +1,5 @@
 import Ember from 'ember';
+/*global Inputmask*/
 
 export function talentFormatCpf(params/*, hash*/) {
   if (!params[0]) {
