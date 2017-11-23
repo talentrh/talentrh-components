@@ -16,8 +16,6 @@ export default Ember.Component.extend({
   loadSelect() {
     let config = Ember.getOwner(this).resolveRegistration('config:environment');
     let select = this.$('select');
-    let elementId = this.get('elementId');
-    let placeholder = this.get('placeholder');
     let tokenProperty = (this.get('tokenProperty') || 'token');
     let disabled = this.get('disabled');
 
@@ -68,7 +66,7 @@ export default Ember.Component.extend({
     let splited = showProperties.split('|');
     let textShow = '';
 
-    if (!obj || !showProperties) return;
+    if (!obj || !showProperties) {return;}
     splited.forEach((item)=> {
       textShow += obj[item] || item;
     });
@@ -99,7 +97,7 @@ export default Ember.Component.extend({
       return;
     }
 
-    if (!select2Selected || !selected.get) return;
+    if (!select2Selected || !selected.get) {return;}
 
     if (parseInt(select2Selected.id) !== parseInt(selected.get('id'))) {
       select.val('').trigger('change');

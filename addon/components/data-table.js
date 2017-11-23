@@ -1,3 +1,4 @@
+/*global console, confirm*/
 import Ember from 'ember';
 import layout from '../templates/components/data-table';
 
@@ -10,8 +11,15 @@ export default Ember.Component.extend({
   showRows: 5,
   page: 1,
   showActions: true,
+  showDeleteButton: true,
 
   didInsertElement() {
+    if(typeof this.get('columnNames') === 'string' ) {
+      this.set('columnNames', this.get('columnNames').split(','));
+    }
+    if(typeof this.get('columns') === 'string' ) {
+      this.set('columns', this.get('columns').split(','));
+    }
     if(this.get('columns.length') !== this.get('columnNames.length')) {
       console.warn('DATA-TABLE: A quantidade de parâmetros de "column" e "columnNames" é diferente e pode gerar erros de visualisação');
     }
@@ -54,14 +62,13 @@ export default Ember.Component.extend({
       obj[column] = {contains: search};
       query.or.push(obj);
     });
-    console.log(query);
     return query;
   },
 
 	actions: {
 		changePage(page) {
       this.set('page', page);
-			this.set('filters.skip', (page-1) * this.get("showRows"));;
+			this.set('filters.skip', (page-1) * this.get("showRows"));
 			this.loadData();
 		},
     searchOnKeyUp: function(searchTerms) {
@@ -76,6 +83,40 @@ export default Ember.Component.extend({
 					this.loadData();
 				}, 300));
 			}
-		}
+		},
+    delete(model) {
+      if(swal) {
+        swal({
+            title: "Tem certeza que deseja remover este registro?",
+            text: "Este registro será permanentemente removido e não será possível recupera-lo!",
+            type: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#DD6B55",
+            confirmButtonText: "Sim, remover!",
+            cancelButtonText: "Cancelar!",
+            closeOnConfirm: false,
+            closeOnCancel: true
+          },
+          function(isConfirm) {
+            if (isConfirm) {
+              model.destroyRecord().then(() => {
+                  swal("Removido com sucesso!", "", "success");
+                })
+                .catch((error) => {
+                  swal("Ops", "Não foi possível remover este registro", "error");
+                });
+            }
+          });
+      } else {
+        if(confirm("Tem certeza que deseja excluir o registro?")) {
+          model.destroyRecord().then(() => {
+              alert("Removido com sucesso!");
+            })
+            .catch((error) => {
+              alert("Ops", "Não foi possível remover este registro");
+            });
+        }
+      }
+    }
 	}
 });

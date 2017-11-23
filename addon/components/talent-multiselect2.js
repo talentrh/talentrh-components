@@ -21,17 +21,17 @@ export default Ember.Component.extend({
     });
     let active = -1;
     this.$(".talent-input-multiselect input").keydown(function(event) {
-      console.log('>> ', event.keyCode);
   		var suggest_a = Ember.$('.talent-input-multiselect-options-container li');
-      console.log(suggest_a);
   		var qnts_a = suggest_a.length;
 
-  		if(40 == event.keyCode)//seta baixo
-  			active = active>=(qnts_a-1) ? 0 : active+1;
-  		else if(38 == event.keyCode)//seta cima
-  			active = ( active<=0 ) ? qnts_a-1 : active-1;
+  		if(40 === event.keyCode) {//seta baixo
+  			active = active>=(qnts_a-1) ? 0 : active++;
+      }
+  		else if(38 === event.keyCode) {//seta cima
+  			active = ( active<=0 ) ? qnts_a-1 : active--;
+      }
 
-  		var a = suggest_a.removeClass('active').eq( active ).addClass('active');
+  		suggest_a.removeClass('active').eq( active ).addClass('active');
   	});
 
     this.$('.talent-input-multiselect input').on('focus', ()=> {
@@ -40,7 +40,7 @@ export default Ember.Component.extend({
     });
 
     Ember.$(window).on('click', (e)=> {
-      let multiSelect = this.$('.talent-input-multiselect');
+      // let multiSelect = this.$('.talent-input-multiselect');
       let clickedElement = Ember.$(e.target);
       let contains = this.$('.talent-input-multiselect').find(clickedElement).length;
 
@@ -51,14 +51,13 @@ export default Ember.Component.extend({
   },
 
   loadItemsSelected() {
-    let typeUser = this.get('content');
     let selectedLink = this.get('endpointSelecteds');
     if (!selectedLink) { return; }
 
     this.get('ajax').request(selectedLink)
     .then((usersSelected)=> {
       let selecteds = usersSelected[this.get('modelName')];
-      if (!selecteds) return;
+      if (!selecteds) {return;}
 
       selecteds = _.map(selecteds, (item)=> {
         return { id: item.id, text: this.buildTextShow(item) };
@@ -107,7 +106,7 @@ export default Ember.Component.extend({
 
   persistUser(id) {
     this.get('ajax').post('userlinks/' + this.get('model.id') + '/users/' + id)
-      .then( (response) => {
+      .then( () => {
         this.get('model').reload();
 
         toastr.success('Pronto', 'Associado com sucesso');
@@ -121,7 +120,7 @@ export default Ember.Component.extend({
 
   disassociateRecord(id) {
     this.get('ajax').delete('userlinks/' + this.get('model.id') + '/users/' + id)
-      .then( (response) => {
+      .then( () => {
         this.get('model').reload();
         toastr.success('Pronto', 'Removido com sucesso');
       });
@@ -144,7 +143,7 @@ export default Ember.Component.extend({
     return _.map(dataArray, (item)=> {
       let data;
       if (item.toJSON) {
-        data = item.toJSON({ includeId: true })
+        data = item.toJSON({ includeId: true });
         data.emberData = item;
       } else {
         data = item;
@@ -181,7 +180,7 @@ export default Ember.Component.extend({
     record = record.toJSON({ includeId:true });
 
     content.pushObject(record);
-    selectedRecords.pushObject({ id: data.id, text: this.buildTextShow(data) });
+    selectedRecords.pushObject({ id: record.id, text: this.buildTextShow(record) });
   },
 
   actions: {
