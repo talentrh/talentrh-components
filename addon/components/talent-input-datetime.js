@@ -10,11 +10,17 @@ export default Ember.Component.extend({
   },
 
   loadInput() {
+    let that = this;
     let options = this.buildOptions();
 
     this.$('input').datetimepicker(options);
     this.addMask();
     this.formatInitialValue();
+
+    this.$('input')
+    .on('dp.show', function() {
+      that.$(this).parent().find('td a[data-action="today"]').html("<span><b>Hoje</b></span>");
+    })
   },
 
   buildOptions() {

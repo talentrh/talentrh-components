@@ -8,6 +8,7 @@ export default Ember.Component.extend({
   },
 
   buildPickers() {
+    let that = this;
     let id = ('#' + this.get('id')) || "#datepair";
 
     let configs = [
@@ -40,6 +41,11 @@ export default Ember.Component.extend({
 
       Ember.$(selector).inputmask({ mask: config.mask, showMaskOnHover: false });
     });
+
+    Ember.$(id + ' .date, .datetime')
+    .on('dp.show', function() {
+      that.$(this).parent().find('td a[data-action="today"]').html("<span><b>Hoje</b></span>");
+    })
   },
 
   fixDateTime(event, inputType, format) {
