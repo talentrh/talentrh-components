@@ -102,7 +102,7 @@ export default Ember.Component.extend({
               model.destroyRecord().then(() => {
                   swal("Removido com sucesso!", "", "success");
                 })
-                .catch((error) => {
+                .catch(() => {
                   swal("Ops", "Não foi possível remover este registro", "error");
                 });
             }
@@ -112,7 +112,7 @@ export default Ember.Component.extend({
           model.destroyRecord().then(() => {
               alert("Removido com sucesso!");
             })
-            .catch((error) => {
+            .catch(() => {
               alert("Ops", "Não foi possível remover este registro");
             });
         }

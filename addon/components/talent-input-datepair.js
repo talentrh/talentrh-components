@@ -45,7 +45,7 @@ export default Ember.Component.extend({
     Ember.$(id + ' .date, .datetime')
     .on('dp.show', function() {
       that.$(this).parent().find('td a[data-action="today"]').html("<span><b>Hoje</b></span>");
-    })
+    });
   },
 
   fixDateTime(event, inputType, format) {

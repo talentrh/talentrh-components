@@ -20,7 +20,7 @@ export default Ember.Component.extend({
     this.$('input')
     .on('dp.show', function() {
       that.$(this).parent().find('td a[data-action="today"]').html("<span><b>Hoje</b></span>");
-    })
+    });
   },
 
   buildOptions() {
