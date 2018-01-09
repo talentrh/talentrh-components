@@ -14,8 +14,8 @@ export default {
       cpf === "77777777777" ||
       cpf === "88888888888" ||
       cpf === "99999999999") {
-        return false;
-      }
+      return false;
+    }
     // Valida 1o digito
     let add = 0;
     for (let i = 0; i < 9; i++) {
@@ -53,7 +53,11 @@ export default {
   isValidCnpj(cnpj) {
     cnpj = cnpj.replace(/[^\d]+/g, '');
 
-    if (cnpj === '' || cnpj.length !== 14) {
+    if (cnpj === '') {
+      return false;
+    }
+
+    if (cnpj.length !== 14) {
       return false;
     }
 
@@ -68,38 +72,38 @@ export default {
       cnpj === "77777777777777" ||
       cnpj === "88888888888888" ||
       cnpj === "99999999999999") {
-        return false;
-      }
-
-    // Valida DVs
-    var len = cnpj.length - 2;
-    var numbers = cnpj.substring(0, len);
-    var digits = cnpj.substring(len);
-    var sum = 0;
-    var pos = len - 7;
-    for (var i = len; i >= 1; i--) {
-      sum += numbers.charAt(len - i) * pos--;
-      if (pos < 2) {
-        pos = 9;
-      }
-    }
-    var result = sum % 11 < 2 ? 0 : 11 - sum % 11;
-    if (result !== digits.charAt(0)) {
       return false;
     }
 
-    len = len + 1;
-    numbers = cnpj.substring(0, len);
-    sum = 0;
-    pos = len - 7;
-    for (i = len; i >= 1; i--) {
-      sum += numbers.charAt(len - i) * pos--;
+    // Valida DVs
+    let tamanho = cnpj.length - 2;
+    let numeros = cnpj.substring(0, tamanho);
+    let digitos = cnpj.substring(tamanho);
+    let soma = 0;
+    let pos = tamanho - 7;
+    for (let i = tamanho; i >= 1; i--) {
+      soma += numeros.charAt(tamanho - i) * pos--;
       if (pos < 2) {
         pos = 9;
       }
     }
-    result = sum % 11 < 2 ? 0 : 11 - sum % 11;
-    if (result !== digits.charAt(1)) {
+    let resultado = soma % 11 < 2 ? 0 : 11 - soma % 11;
+    if (resultado.toString() !== digitos.charAt(0)) {
+      return false;
+    }
+
+    tamanho = tamanho + 1;
+    numeros = cnpj.substring(0, tamanho);
+    soma = 0;
+    pos = tamanho - 7;
+    for (let i = tamanho; i >= 1; i--) {
+      soma += numeros.charAt(tamanho - i) * pos--;
+      if (pos < 2) {
+        pos = 9;
+      }
+    }
+    resultado = soma % 11 < 2 ? 0 : 11 - soma % 11;
+    if (resultado.toString() !== digitos.charAt(1)) {
       return false;
     }
 
