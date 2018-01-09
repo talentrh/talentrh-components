@@ -1,4 +1,4 @@
-/*global console, confirm*/
+/*global console, confirm, alert*/
 import Ember from 'ember';
 import layout from '../templates/components/data-table';
 
@@ -102,7 +102,7 @@ export default Ember.Component.extend({
               model.destroyRecord().then(() => {
                   swal("Removido com sucesso!", "", "success");
                 })
-                .catch((error) => {
+                .catch((/*error*/) => {
                   swal("Ops", "Não foi possível remover este registro", "error");
                 });
             }
@@ -112,7 +112,7 @@ export default Ember.Component.extend({
           model.destroyRecord().then(() => {
               alert("Removido com sucesso!");
             })
-            .catch((error) => {
+            .catch((/*error*/) => {
               alert("Ops", "Não foi possível remover este registro");
             });
         }
