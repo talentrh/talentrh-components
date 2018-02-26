@@ -3,8 +3,7 @@ Componentes padronizados para EmberJS.
 
 1 - Instalação
 ======
-* 1- Adicionar ao package.json: `"talentrh-components": "talentrh/talentrh-components#branchOuTag"`.
-* 2- Executar o comando `npm install`.
+* Executar o comando `npm install talentrh-components`.
 
 2 - Como Usar
 ======
@@ -183,10 +182,10 @@ para o componente, a mesma será acionada após clicar no botão de preencher au
 ##### Propriedades:
 * `disabled=true`
 * `ajax=true` | Informa que o componente vai utilizar Ajax "puro" ao invés do Ember Data.
-* `modelName='nomeDoModel'` | Caso o componente esteja usando Ember Data, informar o nome do model. 
+* `modelName='nomeDoModel'` | Caso o componente esteja usando Ember Data, informar o nome do model.
 * `endpoint='/exemplo/cidades'` | Informar o endpoint o qual o componente buscará os registros.
 * `optional=true` | Exibe um "X" permitindo desselecionar o valor atual do select clicando no mesmo.
-* `startValue=modelTest.city.name` | 
+* `startValue=modelTest.city.name` |
 * `showProperties='property'` | Informar a propriedade que será mostrada no select, pode ser usado o "|" para separar duas ou mais propriedades.
 * `onButtonNew='nomeDaAction'` | Caso essa propriedade for informada, aparecerá um botão ao lado do select que ao ser clicado invocará a action cujo nome foi passado no 'onButtonNew'. Utilizar esse recurso quando for necessario abrir um modal ou levar para outra tela para criar um novo registro.
 
@@ -323,5 +322,3 @@ para o componente, a mesma será acionada após clicar no botão de preencher au
 * 6- No projeto em que será testado o addon, executar o comando `npm link talentrh-components`.
 * 7- No arquivo package.json do projeto em que será testado o addon, adicionar a dependência: `"talentrh-components": "*"`.
 * 8- Write your code.
-
-
