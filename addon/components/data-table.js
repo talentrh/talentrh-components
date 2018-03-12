@@ -1,5 +1,6 @@
-/*global console, confirm, alert*/
+/*global console, confirm, alert, _*/
 import Ember from 'ember';
+import _ from 'lodash';
 import layout from '../templates/components/data-table';
 
 export default Ember.Component.extend({
@@ -20,11 +21,38 @@ export default Ember.Component.extend({
     if(typeof this.get('columns') === 'string' ) {
       this.set('columns', this.get('columns').split(','));
     }
+    if(typeof this.get('computedProperties') === 'string' ) {
+      this.buildComputedProperties();
+    }
     if(this.get('columns.length') !== this.get('columnNames.length')) {
       console.warn('DATA-TABLE: A quantidade de parâmetros de "column" e "columnNames" é diferente e pode gerar erros de visualisação');
     }
     this.resetQueryParams();
     this.loadData();
+  },
+
+  buildComputedProperties() {
+    let computedProperties = [];
+    let splited = this.get('computedProperties').split(',');
+
+    splited.forEach((row)=> {
+      let objectRow = {};
+      let rowSplited = row.split('=');
+      let computedProps = _.last(rowSplited).split('|');
+      let relationshipProperty = _.first(rowSplited).split('.');
+
+      if (relationshipProperty.length > 1) {
+        computedProps = _.map(computedProps, (o)=> {
+          return _.first(relationshipProperty) + '.' + o;
+        });
+      }
+
+      objectRow.key = _.first(rowSplited);
+      objectRow.properties = computedProps;
+      computedProperties.push(objectRow);
+    });
+
+    this.set('computedProperties', computedProperties);
   },
 
   loadData() {
@@ -56,12 +84,27 @@ export default Ember.Component.extend({
   }),
 
   buildQuery(search) {
-    var query = { or: [] };
+    let computedProperties = this.get('computedProperties');
+    let query = { or: [] };
+
+    let computedProperty;
     this.get('columns').map(function (column) {
-      var obj = {};
-      obj[column] = {contains: search};
-      query.or.push(obj);
+      computedProperty = _.find(computedProperties, { key: column });
+      var obj;
+
+      if (computedProperty) {
+        computedProperty.properties.forEach((property)=> {
+          obj = {};
+          obj[property] = {contains: search};
+          query.or.push(obj);
+        });
+      } else {
+        obj = {};
+        obj[column] = {contains: search};
+        query.or.push(obj);
+      }
     });
+
     return query;
   },
 
