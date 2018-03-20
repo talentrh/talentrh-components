@@ -21,6 +21,9 @@ export default Ember.Component.extend({
     if(typeof this.get('columns') === 'string' ) {
       this.set('columns', this.get('columns').split(','));
     }
+    if(typeof this.get('concatColumns') === 'string' ) {
+      this.buildConcatColumns();
+    }
     if(typeof this.get('computedProperties') === 'string' ) {
       this.buildComputedProperties();
     }
@@ -29,6 +32,18 @@ export default Ember.Component.extend({
     }
     this.resetQueryParams();
     this.loadData();
+  },
+
+  buildConcatColumns() {
+    let concatColumns = [];
+    let splited = this.get('concatColumns').split(',');
+
+    splited.forEach((row)=> {
+      let computedProps = row.split('|');
+      concatColumns.push({ fields: computedProps  });
+    });
+
+    this.set('concatColumns', concatColumns);
   },
 
   buildComputedProperties() {
@@ -84,11 +99,14 @@ export default Ember.Component.extend({
   }),
 
   buildQuery(search) {
+    let columns = this.get('columns');
     let computedProperties = this.get('computedProperties');
+    let concatColumns = this.get('concatColumns');
     let query = { or: [] };
 
+
     let computedProperty;
-    this.get('columns').map(function (column) {
+    columns.map(function (column) {
       computedProperty = _.find(computedProperties, { key: column });
       var obj;
 
@@ -104,6 +122,18 @@ export default Ember.Component.extend({
         query.or.push(obj);
       }
     });
+
+    if (concatColumns) {
+      concatColumns.map(function (column) {
+        let obj = {};
+        obj.concat = {
+          fields: column.fields,
+          separator: ' ',
+          contains: search
+        };
+        query.or.push(obj);
+      });
+    }
 
     return query;
   },
