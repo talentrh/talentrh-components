@@ -1,19 +1,17 @@
 import Ember from 'ember';
 
 export default Ember.Mixin.create({
-  handleResponse(status, headers, payload, requestData) {
+  handleResponse(status, headers/*, payload, requestData*/) {
     this.checkVersion(headers);
-
     return this._super(...arguments);
   },
 
   headers: Ember.computed(function () {
     var env = Ember.getOwner(this).resolveRegistration('config:environment');
-    console.log('env', env);
     return {
       'module-prefix': env.APP.name,
       'module-version': env.APP.version.split('+')[0]
-    }
+    };
   }),
 
   checkVersion(headers) {
@@ -22,7 +20,7 @@ export default Ember.Mixin.create({
     var server = headers['front-end-version'] || '0';
     var shouldReload = false;
 
-    console.log('Versions - Ember: ', ember, ' Server: ', server);
+    console.debug('Versions - Ember: ', ember, ' Server: ', server);
     if(ember === server) {
       return;
     }
@@ -46,13 +44,13 @@ export default Ember.Mixin.create({
       }
     }
     if (shouldReload) {
-			console.log('%%%%%%%%%% Atualiza para versão :: ', headers['front-end-version'], '%%%%%%%%%%');
-      console.log('Reload in 5 misecs');
+			console.debug('%%%%%%%%%% Atualiza para versão :: ', headers['front-end-version'], '%%%%%%%%%%');
+      console.debug('Reload in 5 misecs');
 			setTimeout(function () {
         if(env.environment !== 'development') {
           location.reload(true);
         } else {
-          console.log('Ambiente de desenvolvimento -> Não atualiza a página');
+          console.debug('Ambiente de desenvolvimento -> Não atualiza a página');
         }
 			}, 500);
     }
