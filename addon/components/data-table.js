@@ -81,11 +81,14 @@ export default Ember.Component.extend({
   },
 
   resetQueryParams() {
-    this.set('page', 1);
-    this.set('filters', {
+    let fixedFilter = this.get('fixedFilter') || {};
+    let filter = {
       limit: this.get('showRows'),
       skip: 0
-    });
+    };
+
+    this.set('filters', _.assign(filter, fixedFilter));
+    this.set('page', 1);
   },
 
   fakeRowsCounter: Ember.computed('showRows', function() {
@@ -103,7 +106,6 @@ export default Ember.Component.extend({
     let computedProperties = this.get('computedProperties');
     let concatColumns = this.get('concatColumns');
     let query = { or: [] };
-
 
     let computedProperty;
     columns.map(function (column) {
