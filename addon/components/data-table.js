@@ -1,4 +1,4 @@
-/*global console, confirm, alert, _*/
+/*global console, confirm, alert*/
 import Ember from 'ember';
 import _ from 'lodash';
 import layout from '../templates/components/data-table';
