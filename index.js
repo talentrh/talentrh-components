@@ -2,9 +2,9 @@
 
 module.exports = {
   name: 'talentrh-components',
-  isDevelopingAddon() {
-    return true;
-  },
+  // isDevelopingAddon() {
+  //   return true;
+  // },
   included: function (app) {
     this._super.included(app);
 
