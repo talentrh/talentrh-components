@@ -1,6 +1,7 @@
 /* eslint-env node */
 module.exports = {
   // description: ''
+  normalizeEntityName: function() {}, // Isso precisa ficar aqui, assim mesmo.
 
   afterInstall(options) {
     // Perform extra work here.
