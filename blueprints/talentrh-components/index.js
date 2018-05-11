@@ -7,7 +7,7 @@ module.exports = {
     // Perform extra work here.
     return this.addPackagesToProject([{
       name: 'sweetalert2',
-      target: '6.10.1'
+      target: '7.19.0'
     }, {
       name: 'select2',
       target: '4.0.3'
