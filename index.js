@@ -19,5 +19,25 @@ module.exports = {
     app.import('node_modules/sweetalert2/dist/sweetalert2.min.js');
     app.import('node_modules/sweetalert2/dist/sweetalert2.css');
     /*--- import sweetalert ---*/
+  },
+  postBuild: function(results) {
+    var fs = this.project.require('fs-extra');
+    console.log('TalentRH-Components is copying package.json properties to dist/')
+    try {
+      const packageObj = fs.readJsonSync('./package.json')
+      console.log('CURRENT VERSION:: ', packageObj.version) // => X.X.X
+
+      fs.outputJsonSync(results.directory + '/package.json', {
+        name: packageObj.name,
+        version: packageObj.version,
+        description: packageObj.description
+      });
+
+      console.log('package.json export success!')
+
+    } catch (err) {
+      console.error(err)
+    }
+
   }
 };
