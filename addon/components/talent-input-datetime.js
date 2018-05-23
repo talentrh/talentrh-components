@@ -1,5 +1,6 @@
 import Ember from 'ember';
 import layout from '../templates/components/talent-input-datetime';
+import Masker from 'talentrh-components/utils/talent-masker';
 
 export default Ember.Component.extend({
   layout,
@@ -72,9 +73,10 @@ export default Ember.Component.extend({
   }.observes('value'),
 
   addMask() {
-    var mask = this.get('mask');
+    let mask = this.get('mask');
+    let inputElement = document.querySelector(`#${this.elementId} input`);
     if (mask) {
-      this.$('input').inputmask({ mask: mask, showMaskOnHover: false });
+      Masker.applyMask(inputElement, mask);
     }
   },
 

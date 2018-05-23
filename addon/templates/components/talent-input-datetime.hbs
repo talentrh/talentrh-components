@@ -1,11 +1,10 @@
 <div class="form-group">
+  <label class="control-label">{{placeholder}}</label>
   {{input
     class=(if valueSelected 'form-control dirty' 'form-control')
     disabled=disabled
     required=required
     value=valueSelected}}
-
-  <label>{{placeholder}}</label>
 
   {{#unless disabled}}
     <a class="clear-picker" {{action 'clearPicker'}}>

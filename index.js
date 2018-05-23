@@ -2,9 +2,9 @@
 
 module.exports = {
   name: 'talentrh-components',
-  // isDevelopingAddon() {
-  //   return true;
-  // },
+  isDevelopingAddon() {
+    return true;
+  },
   included: function (app) {
     this._super.included(app);
 
@@ -26,7 +26,7 @@ module.exports = {
     app.import('node_modules/bootstrap4-datetimepicker/build/js/bootstrap-datetimepicker.min.js');
     /*--- import datetimepicker ---*/
   },
-  
+
   postBuild: function(results) {
     var fs = this.project.require('fs-extra');
     console.log('TalentRH-Components is copying package.json properties to dist/')

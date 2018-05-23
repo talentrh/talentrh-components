@@ -1,5 +1,6 @@
 import Ember from 'ember';
 import layout from '../templates/components/talent-input-datepair';
+import Masker from 'talentrh-components/utils/talent-masker';
 
 export default Ember.Component.extend({
   layout,
@@ -41,7 +42,7 @@ export default Ember.Component.extend({
 
       let inputElement = document.querySelector(selector);
       if (inputElement) {
-        VMasker(inputElement).maskPattern(config.mask);
+        Masker.applyMask(inputElement, config.mask);
       }
     });
 

@@ -15,6 +15,10 @@ export default {
     inputElement.addEventListener('input', inputHandler.bind(undefined, mask, 10), false);
   },
 
+  format(text, mask) {
+    return VMasker.toPattern(text, mask);
+  },
+
   _getInputPhoneHandler() {
     return function(masks, max, event) {
     	let c = event.target;

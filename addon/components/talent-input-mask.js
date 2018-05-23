@@ -51,7 +51,7 @@ export default TextField.extend({
     set(this, 'unmasked', value.replace(/\D+/g, ''));
   },
 
-  /* Métodos que aplicam máscara no input */
+  /* Métodos que aplicam máscara no INPUT */
   loadInputMask() {
     let mask = get(this, 'mask');
     let typeMask = get(this, 'typeMask');
