@@ -8,6 +8,28 @@ Componentes padronizados para EmberJS.
 2 - Como Usar
 ======
 
+## Input Mask
+##### Exemplo:
+```
+{{talent-input-mask
+  placeholder='CPF'
+  typeMask='cpf' // cep, cnpj, phone, date, datetime
+  unmasked=cpfUnmaked
+  value=cpfMasked}}
+```
+
+OU
+
+```
+{{talent-input-mask
+  placeholder='CPF'
+  mask='999.999.999-99'
+  unmasked=cpfUnmaked
+  value=cpfMasked}}
+```
+
+É possível passar um tipo predefinido ou informar a máscara manualmente.
+
 ## DATA TABLE
 Cria um DATATABLE com o model escolhido, com filtro e paginação. O componente {{data-table}} pode ser utilizado de duas formas: autoprocessamento, ou customizado. Veja os exemplos abaixo.
 
