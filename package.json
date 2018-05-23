@@ -1,6 +1,6 @@
 {
   "name": "talentrh-components",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "description": "The default blueprint for ember-cli addons.",
   "keywords": [
     "ember-addon"
@@ -53,7 +53,6 @@
     "ember-try": "^0.2.23",
     "eslint-plugin-ember": "^5.0.0",
     "eslint-plugin-node": "^5.2.1",
-    "ember-welcome-page": "3.1.1",
     "loader.js": "^4.0.10"
   },
   "engines": {
