@@ -5,7 +5,6 @@ export default Ember.TextField.extend({
 
   didInsertElement() {
     this.floatLabel();
-    this.addMask();
   },
 
   onChangeValue: Ember.observer('value', function () {
@@ -20,14 +19,5 @@ export default Ember.TextField.extend({
     } else {
       input.removeClass('static').removeClass('dirty');
     }
-  },
-
-  addMask(){
-    let mask = this.get('mask');
-    let input = Ember.$('#' + this.get('elementId'));
-
-    if (!mask) { return; }
-
-    input.inputmask(mask);
   }
 });
