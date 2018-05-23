@@ -39,7 +39,10 @@ export default Ember.Component.extend({
         this.fixDateTime(event, config.type, config.picker.format);
       });
 
-      Ember.$(selector).inputmask({ mask: config.mask, showMaskOnHover: false });
+      let inputElement = document.querySelector(selector);
+      if (inputElement) {
+        VMasker(inputElement).maskPattern(config.mask);
+      }
     });
 
     Ember.$(id + ' .date, .datetime')
