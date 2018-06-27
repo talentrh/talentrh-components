@@ -11,6 +11,12 @@ module.exports = {
     }, {
       name: 'select2',
       target: '4.0.3'
+    }, {
+      name: 'bootstrap4-datetimepicker',
+      target: '5.2.3'
+    }, {
+      name: 'ember-click-outside',
+      target: '0.1.11'
     }]);
   }
 };
