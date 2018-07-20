@@ -181,15 +181,6 @@ export default Ember.Component.extend({
                   });
               }
           });
-      } else {
-        if(confirm("Tem certeza que deseja excluir o registro?")) {
-          model.destroyRecord().then(() => {
-              alert("Removido com sucesso!");
-            })
-            .catch((/*error*/) => {
-              alert("Ops", "Não foi possível remover este registro");
-            });
-        }
       }
     }
 	}
