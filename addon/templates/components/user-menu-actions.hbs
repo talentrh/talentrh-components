@@ -1,0 +1,48 @@
+{{#click-outside action=(action "hide")}}
+<div class="author-page author vcard inline-items user-menu-actions" {{action "show"}}>
+  <div class="author-thumb">
+    <img alt="author" src= {{user.avatar}} class="avatar">
+
+    <div class="more-dropdown more-with-triangle">
+      <div class="mCustomScrollbar">
+        <div class="ui-block-title ui-block-title-small">
+          <h6 class="title">Configurações</h6>
+        </div>
+        <ul class="account-settings">
+
+          {{#each baseLinks as |item|}}
+          <li>
+            {{#if item.route}}
+              {{#link-to item.route user.id}}
+                <span>{{item.title}}</span>
+              {{/link-to}}
+            {{else}}
+              <a href={{item.link}} target="_blank">
+                <span>-> {{item.title}}</span>
+              </a>
+            {{/if}}
+          </li>
+          {{/each}}
+          <li>
+            <a href="#" data-toggle="modal" data-target="#modal-about">
+              <span>Sobre</span>
+            </a>
+          </li>
+
+          <li>
+            <a href="#" {{action 'logout'}}>
+              <svg class="olymp-logout-icon">
+                <use xlink:href="/icons/icons.svg#olymp-logout-icon"></use>
+              </svg>
+              <span>Log Out</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="author-title">
+    {{user.firstName}}<svg><use xlink:href="/icons/icons.svg#olymp-dropdown-arrow-icon"></use></svg>
+  </div>
+</div>
+{{/click-outside}}

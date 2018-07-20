@@ -1,0 +1,1 @@
+export { default } from 'talentrh-components/components/user-menu-actions';
