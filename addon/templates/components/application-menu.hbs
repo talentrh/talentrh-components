@@ -1,0 +1,94 @@
+<div class="fixed-sidebar">
+	<div class="fixed-sidebar-left sidebar--small" id="sidebar-left">
+		{{nela-animated-logo}}
+
+		<div id="sidebar-closed" class="mCustomScrollbar">
+			<ul class="left-menu">
+        {{yield}}
+			</ul>
+		</div>
+	</div>
+
+	<div class="fixed-sidebar-left sidebar--large" id="sidebar-left-1">
+		{{nela-animated-logo title=title}}
+
+		<div id="sidebar-open" class="mCustomScrollbar">
+			<ul class="left-menu">
+        {{yield}}
+			</ul>
+		</div>
+	</div>
+</div>
+
+<div class="fixed-sidebar fixed-sidebar-responsive">
+
+	<div class="fixed-sidebar-left sidebar--small" id="sidebar-left-responsive">
+		<a href="#" class="logo js-sidebar-open">
+			<img class="logo-mobile" src="/images/icone_white.png" alt="Nela">
+		</a>
+	</div>
+
+	<div class="fixed-sidebar-left sidebar--large" id="sidebar-left-1-responsive">
+    {{nela-animated-logo title=title}}
+		<div class="mCustomScrollbar" data-mcs-theme="dark">
+
+			<div class="control-block">
+				<div class="author-page author vcard inline-items">
+					<div class="author-thumb">
+						<img alt="author" src= {{user.avatar}} class="avatar">
+					</div>
+					<a href="02-ProfilePage.html" class="author-name fn">
+						<div class="author-title">
+							user.fullName <svg class="olymp-dropdown-arrow-icon"><use xlink:href="/icons/icons.svg#olymp-dropdown-arrow-icon"></use></svg>
+						</div>
+						<span class="author-subtitle">user.jobFunction.title</span>
+					</a>
+				</div>
+			</div>
+
+			<div class="ui-block-title ui-block-title-small">
+				<h6 class="title">Menu Principal</h6>
+			</div>
+
+			<ul class="left-menu">
+        {{yield}}
+			</ul>
+
+			<div class="ui-block-title ui-block-title-small">
+				<h6 class="title">Sua Conta</h6>
+			</div>
+
+			<ul class="left-menu">
+				<li>
+          <a href= {{app-url 'nela'}} target="_blank">
+
+            <i class="fa fa-address-card fa-2x icon-menubar"></i>
+            <span class="left-menu-title">Meu Perfil</span>
+          </a>
+				</li>
+
+				<li>
+					<a href= {{app-url 'conta' 'user/edit'}} target="_blank">
+						<i class="fa fa-edit fa-2x icon-menubar"></i>
+						<span class="left-menu-title">Dados Cadastrais</span>
+					</a>
+				</li>
+
+				<li>
+					<a href= {{app-url 'conta' 'user/changepassword'}} target="_blank">
+						<i class="fa fa-lock fa-2x icon-menubar"></i>
+						<span class="left-menu-title">Alterar Senha</span></a>
+				</li>
+
+
+				<li>
+					<a href="#" {{action 'logout'}}>
+						<i class="fa fa-power-off fa-2x icon-menubar"></i>
+						<span class="left-menu-title">Log Out</span>
+					</a>
+				</li>
+			</ul>
+
+		</div>
+	</div>
+</div>
