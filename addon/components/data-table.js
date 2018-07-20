@@ -171,16 +171,15 @@ export default Ember.Component.extend({
             cancelButtonText: "Cancelar!",
             closeOnConfirm: false,
             closeOnCancel: true
-          },
-          function(isConfirm) {
-            if (isConfirm) {
-              model.destroyRecord().then(() => {
-                  swal("Removido com sucesso!", "", "success");
-                })
-                .catch((/*error*/) => {
-                  swal("Ops", "Não foi possível remover este registro", "error");
-                });
-            }
+          }).then((result) => {
+              if (result.value) {
+                model.destroyRecord().then(() => {
+                    swal("Removido com sucesso!", "", "success");
+                  })
+                  .catch((/*error*/) => {
+                    swal("Ops", "Não foi possível remover este registro", "error");
+                  });
+              }
           });
       } else {
         if(confirm("Tem certeza que deseja excluir o registro?")) {
