@@ -1,0 +1,1 @@
+export { default } from 'talentrh-components/components/talentrh-modules-dash';

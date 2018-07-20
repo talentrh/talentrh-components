@@ -1,0 +1,20 @@
+<i class="fa fa-th fa-2x"></i>
+
+<div class="more-dropdown container-modules">
+  {{#each talentModules as |talentModule|}}
+    {{#if talentModule.blankBlock}}
+      <div class="view-module blank-block"></div>
+    {{else}}
+      <div class="view-module">
+        <a href= {{talentModule.link}} target="_blank">
+          <div class="centralizer">
+            <img class="icon-modules" src= {{talentModule.icon}}> <br>
+            <span>{{talentModule.title}}</span>
+          </div>
+        </a>
+      </div>
+    {{/if}}
+  {{/each}}
+
+  <div class="clearfix"></div>
+</div>
