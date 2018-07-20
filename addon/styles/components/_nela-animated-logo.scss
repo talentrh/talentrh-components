@@ -1,0 +1,98 @@
+.logo {
+  background: darkblue;
+}
+
+.animation-logo {
+  position: relative;
+
+  .logo-effect-style {
+    position: absolute;
+    transform: translateX(-50%);
+    animation: logo-effect 1.6s forwards;
+    z-index: 999;
+    background: darkblue;
+    left: 50%;
+  }
+
+  .particle-logo {
+    width: 5px;
+    height: 5px;
+    background: rgba(white, 0.5);
+    position: absolute;
+    transform: translate(-50%, -50%);
+    border-radius: 100%;
+  }
+
+  .particle-top-left {
+    animation: particle-top-left-effect 1s forwards;
+  }
+
+  .particle-bot-left {
+    animation: particle-bot-left-effect 1s forwards;
+  }
+
+  .particle-top-right {
+    animation: particle-top-right-effect 1s forwards;
+  }
+
+  .particle-bot-right {
+    animation: particle-bot-right-effect 1s forwards;
+  }
+}
+
+
+@keyframes particle-top-left-effect {
+  0% {
+    top: 0px;
+    left: 0px;
+  }
+  100%  {
+    top: 50%;
+    left: 50%;
+  }
+}
+
+@keyframes particle-bot-left-effect {
+  0% {
+    left: 0px;
+    top: 100%;
+  }
+  100%  {
+    left: 50%;
+    top: 50%;
+  }
+}
+
+@keyframes particle-top-right-effect {
+  0% {
+    left: 100%;
+    top: 0px;
+  }
+  100%  {
+    left: 50%;
+    top: 50%;
+  }
+}
+
+@keyframes particle-bot-right-effect {
+  0% {
+    left: 100%;
+    top: 100%;
+  }
+  100%  {
+    left: 50%;
+    top: 50%;
+  }
+}
+
+@keyframes logo-effect {
+  0% {
+    width: 0px;
+  }
+  60% {
+    width: 0px;
+  }
+  100% {
+    width: 40px;
+  }
+}

@@ -1,0 +1,42 @@
+.dropdown-modules {
+  padding: 18px 0px !important;
+}
+
+.container-modules {
+  width: 350px !important;
+  padding: 0px;
+  background: none;
+  box-shadow: none;
+  margin-top: 23px;
+  z-index: 9999;
+
+  .view-module {
+    float: left;
+    width: 50%;
+    background: #e6ecf5;
+    height: 130px;
+
+    a {
+      text-align: center;
+      box-shadow: inset 0px 0px 0px 80px #fff;
+      transition: all 0.8s cubic-bezier(0, 0, 0.1, 1.26);
+      padding: 16px;
+      height: 100%;
+
+      &:hover {
+        box-shadow: inset 0px 0px 0px 0px #fff;
+        color: #404358;
+      }
+
+      .centralizer {
+        position: relative;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+      }
+    }
+  }
+  .view-module.blank-block {
+    background: #fff;
+  }
+}

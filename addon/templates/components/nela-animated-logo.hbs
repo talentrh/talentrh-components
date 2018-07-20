@@ -1,0 +1,16 @@
+{{#link-to 'home' class="logo"}}
+
+  {{#unless title}}
+    <div class="particle-logo particle-top-left"></div>
+    <div class="particle-logo particle-bot-left"></div>
+    <div class="particle-logo particle-top-right"></div>
+    <div class="particle-logo particle-bot-right"></div>
+  {{/unless}}
+
+  <img class={{if title "logo-mobile" "logo-mobile logo-effect-style"}} src="/images/icone_white.png">
+
+  {{#if title}}
+    <h6 class="logo-title">{{title}}</h6>
+  {{/if}}
+
+{{/link-to}}

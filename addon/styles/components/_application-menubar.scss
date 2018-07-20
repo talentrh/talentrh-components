@@ -1,0 +1,22 @@
+.ps > .ps__rail-y {
+  opacity: 0;
+  z-index: -1;
+  visibility: hidden;
+}
+.fixed-sidebar-left.sidebar--small .left-menu a {
+    padding: 14px 0 14px 25px;
+    display: block;
+    font-size: 23px;
+}
+
+.sidebar--small  {
+  .left-menu-title, .sidebar-open {
+    display: none;
+  }
+}
+
+.sidebar--large {
+  .sidebar-closed {
+    display: none;
+  }
+}
